@@ -8,4 +8,4 @@
 - ReactRouter
 - JWT
 
-[DEMO](https://netflix-rtk-ts-mern.vercel.app)
+[DEMO](https://netflix-mern-ts.vercel.app)
