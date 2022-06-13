@@ -1,13 +1,24 @@
+import {Request, Response} from 'express'
+
 const router = require('express').Router()
 
 const verify = require('../verifyToken')
 const Movie = require('../models/Movie')
 
+interface IMovies extends Request{
+    user: {
+        id: string,
+        isAdmin: boolean,
+        iat: number,
+        exp: number
+    }
+}
+
 //CREATE
 router.post(
     '/',
     verify, // middleware
-    async (req, res) => {
+    async (req: IMovies, res: Response) => {
         if (req.user.isAdmin) {
             const newMovie = new Movie(req.body)
 
@@ -27,7 +38,7 @@ router.post(
 router.put(
     '/:id',
     verify, // middleware
-    async (req, res) => {
+    async (req: IMovies, res: Response) => {
         if (req.user.isAdmin) {
             try {
                 const updatedMovie = await Movie.findByIdAndUpdate(
@@ -50,7 +61,7 @@ router.put(
 router.delete(
     '/:id',
     verify, // middleware
-    async (req, res) => {
+    async (req: IMovies, res: Response) => {
         if (req.user.isAdmin) {
             try {
                 await Movie.findByIdAndDelete(req.params.id)
@@ -68,7 +79,7 @@ router.delete(
 router.get(
     '/find/:id',
     verify, // middleware
-    async (req, res) => {
+    async (req: Request, res: Response) => {
         try {
             const movie = await Movie.findById(req.params.id)
             return res.status(200).json(movie)
@@ -82,7 +93,7 @@ router.get(
 router.get(
     '/',
     verify, // middleware
-    async (req, res) => {
+    async (req: IMovies, res: Response) => {
         if (req.user.isAdmin) {
             try {
                 const movies = await Movie.find()
@@ -100,7 +111,7 @@ router.get(
 router.get(
     '/random',
     verify, // middleware
-    async (req, res) => {
+    async (req: Request, res: Response) => {
         const type = req.query.type // for example /random?type=series
         let movie = ''
 

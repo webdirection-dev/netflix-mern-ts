@@ -1,14 +1,25 @@
+import {Request, Response} from 'express'
+
 const router = require('express').Router()
 const CryptoJS = require('crypto-js')
 
 const verify = require('../verifyToken')
 const User = require('../models/User')
 
+interface IUsers extends Request{
+    user: {
+        id: string,
+            isAdmin: boolean,
+            iat: number,
+            exp: number
+    }
+}
+
 //UPDATE
 router.put(
     '/:id',
     verify, // middleware
-    async (req, res) => {
+    async (req: IUsers, res: Response) => {
         const {id, isAdmin} = req.user
         const {password} = req.body
 
@@ -36,7 +47,7 @@ router.put(
 router.delete(
     '/:id',
     verify, // middleware
-    async (req, res) => {
+    async (req: IUsers, res: Response) => {
         const {id, isAdmin} = req.user
 
         if (req.params.id === id || isAdmin) {
@@ -55,7 +66,7 @@ router.delete(
 //GET
 router.get(
     '/find/:id',
-    async (req, res) => {
+    async (req: Request, res: Response) => {
         try {
             const user = await User.findById(req.params.id)
             const {password, ...info} = user._doc
@@ -71,7 +82,7 @@ router.get(
 router.get(
     '/',
     verify, // middleware
-    async (req, res) => {
+    async (req: IUsers, res: Response) => {
         const query = req.query.new // for example /users?new=true
 
         if (req.user.isAdmin) {
@@ -94,9 +105,9 @@ router.get(
 //GET USER STATS
 router.get(
     '/stats',
-    async (req, res) => {
-        const today = new Date()
-        const lastYear = today.setFullYear(today.setFullYear() - 1)
+    async (req: Request, res: Response) => {
+        // const today = new Date()
+        // const lastYear = today.setFullYear(today.setFullYear() - 1)
 
         const monthsArray = [
             'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',

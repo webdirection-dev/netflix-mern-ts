@@ -1,13 +1,27 @@
+import {Request, Response} from 'express'
+
 const router = require('express').Router()
 
 const verify = require('../verifyToken')
 const List = require('../models/List')
 
+interface ILists extends Request{
+    user: {
+        id: string,
+        isAdmin: boolean,
+        iat: number,
+        exp: number
+    }
+}
+
 //CREATE
 router.post(
     '/',
     verify, // middleware
-    async (req, res) => {
+    async (req: ILists, res: Response) => {
+        const test = req.user
+        console.log(test)
+
         if (req.user.isAdmin) {
             const newList = new List(req.body)
 
@@ -27,7 +41,7 @@ router.post(
 router.delete(
     '/:id',
     verify, // middleware
-    async (req, res) => {
+    async (req: ILists, res: Response) => {
         if (req.user.isAdmin) {
             try {
                 await List.findByIdAndDelete(req.params.id)
@@ -45,7 +59,7 @@ router.delete(
 router.get(
     '/',
     verify, // middleware
-    async (req, res) => {
+    async (req: Request, res: Response) => {
         let list = []
         const typeQuery = req.query.type
         const genreQuery = req.query.genre
