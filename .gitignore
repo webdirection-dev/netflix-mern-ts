@@ -19,6 +19,7 @@
 .DS_Store
 .env.local
 /api/.env.local
+/api/.env
 /client/.env.local
 .env.development.local
 /api/.env.development.local
