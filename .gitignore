@@ -15,6 +15,7 @@
 /idea
 /.idea
 
+*.env
 /.env
 
 # misc
