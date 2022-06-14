@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react"
 import {useMatchMedia} from "../../hooks"
 
 interface IMedia { [key: string]: boolean }
