@@ -4,13 +4,12 @@ import axios from "axios"
 
 import './listItem.scss'
 import {Add, PlayArrow, ThumbDownAltOutlined, ThumbUpAltOutlined} from "@mui/icons-material"
-import {IListItem} from "../../types"
+import {IMovieInfo} from "../../types"
 
 const token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYTU4OTlmNGViYzAwYjcwOTZmNzA3YSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY1NTE5MzE3MCwiZXhwIjoxNjU1Mjc5NTcwfQ.G_RYpzaiCBDbZ-dCRfwfPtgds6V6qcB7_tV3LNaiTIU'
 
 interface IListProps {
     item: string;
-    // item: IListItem;
     index: number;
 }
 
@@ -18,7 +17,7 @@ const ListItem: React.FC<IListProps> = ({item, index}) => {
     const trailerTest = 'https://webdirection.org/video/the-mari%CC%81as-hush.mp4'
 
     const [isHovered, setIsHovered] = useState(false)
-    const [movie, setMovie] = useState({} as IListItem)
+    const [movie, setMovie] = useState({} as IMovieInfo)
     const {title, img, imgTitle, trailer, duration, limit, year, description, genre} = movie
 
     useEffect(() => {

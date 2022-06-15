@@ -3,10 +3,10 @@ import {Link, useLocation} from 'react-router-dom'
 import './watch.scss'
 
 import {ArrowBackOutlined} from "@mui/icons-material"
-import {IListItem} from "../../types";
+import {IMovieInfo} from "../../types";
 
 interface IMovie {
-    movie: IListItem
+    movie: IMovieInfo
 }
 
 const Watch: React.FC = () => {

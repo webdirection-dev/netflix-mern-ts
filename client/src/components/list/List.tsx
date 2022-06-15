@@ -3,7 +3,7 @@ import {useWidthList} from "./use-width-list"
 
 import './list.scss'
 import {ArrowBackIosOutlined, ArrowForwardIosOutlined} from "@mui/icons-material"
-import {IList, IListItem} from "../../types";
+import {IList} from "../../types";
 
 import ListItem from "../listItem/ListItem"
 
@@ -31,7 +31,7 @@ const List: React.FC<IListProps> = (props) => {
                 <div className="container" ref={listRef}>
                     {
                         content.map((i: string, index: number) => {
-                            return <ListItem key={i} item={i} index={index}/>
+                            return <ListItem key={`${Math.random()}`} item={i} index={index}/>
                         })
                     }
                 </div>

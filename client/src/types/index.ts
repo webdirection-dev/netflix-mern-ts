@@ -1,4 +1,4 @@
-export interface IListItem {
+export interface IMovieInfo {
     _id: string;
     title: string;
     trailer: string;
