@@ -1,32 +1,34 @@
 import {useEffect, useState} from "react"
-import axios from "axios";
+import axios from "axios"
+import {IUser} from "../../types"
 
 import {MY_TOKEN} from "../../config"
 const token = `Bearer ${MY_TOKEN}`
 
-export const useGetRandomList = (type?: string) => {
-    const [lists, setLists] = useState([])
-    const [genre, setGenre] = useState(null)
+export const useGetAllUsers = () => {
+    const [allUsers, setAllUsers] = useState([] as IUser[])
+
 
     useEffect(() => {
-        const getRandomList = async () => {
+        const getStats = async () => {
             try {
                 const res = await axios.get(
-                    `/lists${type ? "?type=" + type : ''}${genre ? "&genre=" + genre : ''}`,
+                    'users',
                     {
                         headers: {
                             authorization: token,
                         }
-                    },
+                    }
                 )
-                setLists(res.data)
+
+                setAllUsers(res.data)
             } catch (err) {
                 console.error(err)
             }
         }
 
-        getRandomList()
-    }, [type, genre])
+        getStats()
+    }, [])
 
-    return {lists}
+    return {allUsers}
 }

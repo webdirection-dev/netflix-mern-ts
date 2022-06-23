@@ -19,8 +19,6 @@ router.post(
     '/',
     verify, // middleware
     async (req: ILists, res: Response) => {
-        const test = req.user
-        console.log(test)
 
         if (req.user.isAdmin) {
             const newList = new List(req.body)

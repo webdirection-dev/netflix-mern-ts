@@ -1,0 +1,8 @@
+.main {
+    display: flex;
+
+    .container {
+        width: calc(100vw - (100vw / 7));
+        margin-left: calc(100vw / 7);
+    }
+}

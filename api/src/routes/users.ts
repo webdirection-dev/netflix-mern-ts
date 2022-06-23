@@ -83,12 +83,12 @@ router.get(
     '/',
     verify, // middleware
     async (req: IUsers, res: Response) => {
-        const query = req.query.new // for example /users?new=true
+        const query = req.query.new // for example /users?new=true)
 
         if (req.user.isAdmin) {
             try {
                 const users = query ?
-                    await User.find().sort({_id: -1}).limit(10)
+                    await User.find().sort({_id: -1}).limit(5)
                     :
                     await User.find()
 
@@ -108,10 +108,6 @@ router.get(
     async (req: Request, res: Response) => {
         // const today = new Date()
         // const lastYear = today.setFullYear(today.setFullYear() - 1)
-
-        const monthsArray = [
-            'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',
-        ]
 
         try {
             const data = await User.aggregate([
