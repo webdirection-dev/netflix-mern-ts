@@ -3,7 +3,7 @@ import React, {ReactElement} from "react"
 import {
     MdDashboard,
     MdPersonOutline,
-    MdStore,
+    MdPlayCircleOutline,
     MdOutlinePayment,
     MdLocalShipping,
     MdInsertChart,
@@ -35,9 +35,9 @@ export const sidebarData = [
         link: '/users',
     },
     {
-        title: 'Products',
-        icon: <MdStore className='icon'/>,
-        link: '/products',
+        title: 'Movies',
+        icon: <MdPlayCircleOutline className='icon'/>,
+        link: '/movies',
     },
     {
         title: 'Orders',

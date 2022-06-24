@@ -65,8 +65,8 @@ export const userInputs = {
     ]
 }
 
-export const productInputs = {
-    title: 'Add New Product',
+export const movieInputs = {
+    title: 'Add New Movie',
     data: [
         {
             id: 1,
