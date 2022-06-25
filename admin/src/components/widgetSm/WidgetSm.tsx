@@ -3,7 +3,7 @@ import "./widgetSm.scss"
 
 import WidgetSmItem from "./WidgetSmItem"
 import {useWidgetSmData} from "./use-widgetSm-data"
-import {IUser} from "../../types"
+import {IUser} from "../../static-data/types/types"
 
 const WidgetSm: React.FC = () => {
     const {newUsers} = useWidgetSmData()

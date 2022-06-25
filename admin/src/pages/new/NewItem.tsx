@@ -1,6 +1,6 @@
 import React from "react"
 import {MdOutlineDriveFolderUpload} from "react-icons/md"
-import {INewItemInput} from "../../static-data/form-source"
+import {INewItemInput} from "../../static-data/data/form-source"
 
 const NewItem: React.FC<INewItemInput> = (props) => {
     const {id, htmlId, label, type, placeholder} = props

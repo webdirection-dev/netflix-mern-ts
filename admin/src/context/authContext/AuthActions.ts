@@ -1,8 +1,10 @@
+import {IUser} from "../../static-data/types/types"
+
 export const loginStart = () => ({
     type: 'LOGIN_START',
 })
 
-export const loginSuccess = (user: any) => ({
+export const loginSuccess = (user: IUser) => ({
     type: 'LOGIN_SUCCESS',
     payload: user
 })

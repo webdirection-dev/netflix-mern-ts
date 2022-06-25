@@ -1,7 +1,7 @@
 import React from "react"
 import {Link} from 'react-router-dom'
 
-import {titleSidebarItem, ISidebarItem} from "../../static-data/sidebar-data"
+import {titleSidebarItem, ISidebarItem} from "../../static-data/data/sidebar-data"
 
 const SidebarItem: React.FC<ISidebarItem> = (props) => {
     const {title, icon, link, index, pathname} = props

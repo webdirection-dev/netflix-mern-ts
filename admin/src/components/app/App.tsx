@@ -6,6 +6,7 @@ import Login from "../../pages/login/Login";
 import Main from "../../layout/Main"
 import Sidebar from "../sidebar/Sidebar"
 import Navbar from "../navbar/Navbar"
+import NotFond from "../../pages/notFound/NotFond"
 
 import {useChangeTheme} from "./use-change-theme"
 
@@ -21,6 +22,7 @@ function App() {
                 !auth && (
                     <Routes>
                         <Route path="login" element={<Login />} />
+                        <Route path="*" element={<NotFond />} />
                     </Routes>
                 )
             }

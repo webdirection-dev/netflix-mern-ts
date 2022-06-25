@@ -1,8 +1,8 @@
 import {useEffect, useState} from "react"
 import axios from "axios"
-import {IUser} from "../../types"
+import {IUser} from "../../static-data/types/types"
 
-import {MY_TOKEN} from "../../config"
+import {MY_TOKEN} from "../../static-data/config"
 const token = `Bearer ${MY_TOKEN}`
 
 export const useWidgetSmData = () => {

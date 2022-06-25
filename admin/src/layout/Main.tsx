@@ -7,7 +7,7 @@ import Single from "../pages/single/Single"
 import New from "../pages/new/New"
 import NotFond from "../pages/notFound/NotFond"
 
-import {userInputs, movieInputs} from "../static-data/form-source"
+import {userInputs, movieInputs} from "../static-data/data/form-source"
 
 const Main: React.FC = () => {
     return(

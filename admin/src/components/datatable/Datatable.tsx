@@ -2,7 +2,7 @@ import React, {useState} from "react"
 import {Link} from 'react-router-dom'
 import './datatable.scss'
 
-import {userColumns, userRows, IUserRows} from "../../static-data/datatable-data"
+import {userColumns, userRows, IUserRows} from "../../static-data/data/datatable-data"
 import {DataGrid} from '@mui/x-data-grid'
 
 

@@ -1,33 +1,23 @@
 import React from "react"
 import './login.scss'
-import {useBgLogin} from "./use-bg-login"
+
+import ImgBackground from "../../components/imgBackground/ImgBackground"
+import LoginForm from "./LoginForm"
 
 const Login: React.FC = () => {
-    const bg = useBgLogin()
-
-    //дизайн страницы регистрации/авторизации
-    // https://www.mockplus.com/blog/post/login-page-examples
-
     return(
         <div className='login'>
             <div className="container">
-                <img src={bg} alt="img" className="img"/>
+                <ImgBackground />
 
-                <form className="loginForm">
-                    <input
-                        className='loginInput'
-                        type="text"
-                        placeholder='email'
-                    />
+                <div className="content">
+                    <div className="welcome">
+                        <h1 className="title">Login page</h1>
+                        <h3 className="subtitle">Welcome to the Admin panel</h3>
+                    </div>
 
-                    <input
-                        className='loginInput'
-                        type="password"
-                        placeholder='password'
-                    />
-
-                    <button className="loginBtn">Login</button>
-                </form>
+                    <LoginForm />
+                </div>
             </div>
         </div>
     )

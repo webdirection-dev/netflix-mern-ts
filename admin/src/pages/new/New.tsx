@@ -2,7 +2,7 @@ import React, {useState} from "react"
 import './new.scss'
 
 import NewItem from "./NewItem"
-import {INewFormInput} from "../../static-data/form-source"
+import {INewFormInput} from "../../static-data/data/form-source"
 import {MdOutlineDriveFolderUpload} from "react-icons/md";
 
 interface INewForm {

@@ -1,7 +1,7 @@
 import React from "react"
 import './widget.scss'
 import {MdKeyboardArrowUp} from "react-icons/md"
-import {widgetsData} from "../../static-data/widgets-data"
+import {widgetsData} from "../../static-data/data/widgets-data"
 
 interface IWidget {
     type: string;

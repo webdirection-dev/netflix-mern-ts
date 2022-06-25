@@ -1,4 +1,6 @@
-const AuthReducer = (state: any, action: any) => {
+import {IAuthUserAction, IAuthUserState} from "../../static-data/types/autchTypes"
+
+const AuthReducer = (state: IAuthUserState, action: IAuthUserAction) => {
     switch (action.type) {
         case 'LOGIN_START': {
             return {

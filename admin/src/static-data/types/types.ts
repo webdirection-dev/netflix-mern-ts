@@ -7,4 +7,5 @@ export interface IUser {
     profilePic: string;
     updatedAt: string;
     username: string;
+    accessToken?: string;
 }
