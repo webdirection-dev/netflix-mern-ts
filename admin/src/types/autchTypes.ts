@@ -1,4 +1,5 @@
 import {Dispatch} from "react"
+import {IUser} from "./types"
 
 export interface IAuthUserAction {
     type: string;
@@ -8,7 +9,7 @@ export interface IAuthUserAction {
 export type TAuthDispatch = Dispatch<IAuthUserAction> | undefined
 
 export interface IAuthUserState {
-    user: null | {};
+    user: null | IUser;
     isFetching: boolean;
     error: boolean;
     dispatch?: TAuthDispatch;

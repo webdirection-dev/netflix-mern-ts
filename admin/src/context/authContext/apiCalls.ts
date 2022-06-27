@@ -2,7 +2,7 @@ import axios from "axios"
 
 import {loginFailure, loginStart, loginSuccess} from "./AuthActions"
 
-import {TAuthDispatch} from "../../static-data/types/autchTypes"
+import {TAuthDispatch} from "../../types/autchTypes"
 
 interface ILoginCall {email: string, password: string}
 
@@ -18,7 +18,7 @@ export const loginCall = async (user: ILoginCall, dispatch: TAuthDispatch) => {
             }
         )
 
-        if (dispatch) dispatch(loginSuccess(res.data))
+        if (dispatch && res.data.isAdmin) dispatch(loginSuccess(res.data))
     } catch (err) {
         if (dispatch) dispatch(loginFailure())
         console.error(err)

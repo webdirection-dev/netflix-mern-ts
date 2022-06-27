@@ -82,7 +82,7 @@ export const sidebarData = [
     {
         title: 'Logout',
         icon: <MdExitToApp className='icon'/>,
-        link: '/logout',
+        link: '/login',
     },
 ]
 

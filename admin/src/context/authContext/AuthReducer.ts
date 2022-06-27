@@ -1,4 +1,4 @@
-import {IAuthUserAction, IAuthUserState} from "../../static-data/types/autchTypes"
+import {IAuthUserAction, IAuthUserState} from "../../types/autchTypes"
 
 const AuthReducer = (state: IAuthUserState, action: IAuthUserAction) => {
     switch (action.type) {
@@ -23,6 +23,14 @@ const AuthReducer = (state: IAuthUserState, action: IAuthUserAction) => {
                 user: null,
                 isFetching: false,
                 error: true,
+            }
+        }
+
+        case 'LOGOUT': {
+            return {
+                user: null,
+                isFetching: false,
+                error: false,
             }
         }
 

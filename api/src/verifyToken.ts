@@ -13,7 +13,6 @@ interface IReqUser extends Request {
 }
 
 function verify(req: IReqUser, res: Response, next: NextFunction) {
-    console.log(req)
     const authHeader = req.headers.authorization
     console.log(authHeader)
     if (!authHeader) return res.status(401).json('You are not authenticated!')

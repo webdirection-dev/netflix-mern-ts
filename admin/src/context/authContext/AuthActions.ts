@@ -1,5 +1,6 @@
-import {IUser} from "../../static-data/types/types"
+import {IUser} from "../../types/types"
 
+//login
 export const loginStart = () => ({
     type: 'LOGIN_START',
 })
@@ -11,4 +12,9 @@ export const loginSuccess = (user: IUser) => ({
 
 export const loginFailure = () => ({
     type: 'LOGIN_FAILURE',
+})
+
+//logout
+export const logoutStart = () => ({
+    type: 'LOGOUT',
 })

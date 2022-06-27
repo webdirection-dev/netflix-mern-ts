@@ -1,9 +1,9 @@
-import {createContext, useReducer, PropsWithChildren, ReducerWithoutAction} from "react"
+import {createContext, useReducer, PropsWithChildren, ReducerWithoutAction, useEffect} from "react"
 import AuthReducer from "./AuthReducer"
-import {IAuthUserState} from "../../static-data/types/autchTypes";
+import {IAuthUserState} from "../../types/autchTypes"
 
 const INITIAL_STATE = {
-    user: null,
+    user: JSON.parse(localStorage.getItem('user') as string) || null,
     isFetching: false,
     error: false,
 }
@@ -18,8 +18,12 @@ export const AuthContextProvider = ({children}: PropsWithChildren<{}>) => {
 
     const value = {
         ...state,
-        dispatch
+        dispatch,
     }
+
+    useEffect(() => {
+        localStorage.setItem('user', JSON.stringify(state.user))
+    }, [state.user])
 
     return(
         <AuthContext.Provider value={value}>

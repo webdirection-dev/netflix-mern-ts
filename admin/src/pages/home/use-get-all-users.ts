@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react"
 import axios from "axios"
-import {IUser} from "../../static-data/types/types"
+import {IUser} from "../../types/types"
 
 import {MY_TOKEN} from "../../static-data/config"
 const token = `Bearer ${MY_TOKEN}`

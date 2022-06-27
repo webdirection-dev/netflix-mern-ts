@@ -1,7 +1,7 @@
 import React from "react"
 import {MdVisibility} from "react-icons/md"
 
-import {IUser} from "../../static-data/types/types"
+import {IUser} from "../../types/types"
 
 const WidgetSmItem: React.FC<IUser> = (props) => {
     const {profilePic, username} = props
