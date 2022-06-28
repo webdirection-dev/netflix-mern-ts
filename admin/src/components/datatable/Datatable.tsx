@@ -1,16 +1,23 @@
-import React, {useState} from "react"
+import React, {useContext, useEffect} from "react"
 import {Link} from 'react-router-dom'
 import './datatable.scss'
 
-import {userColumns, userRows, IUserRows} from "../../static-data/data/datatable-data"
 import {DataGrid} from '@mui/x-data-grid'
+import {useGetDataForDatatable} from "./use-get-data-for-datatable"
+import {MovieContext} from "../../context/movieContext/MovieContext";
+import {moviesColumns} from "../../static-data/data/datatable-data";
+import {getMovies} from "../../context/apiCalls";
+
+interface IDatatableProps {
+    type: string
+}
 
 
-const Datatable: React.FC = () => {
-    const [data, setData] = useState(userRows as IUserRows[])
+const Datatable: React.FC<IDatatableProps> = ({type}) => {
+    const {columns, rows, title} = useGetDataForDatatable(type)
 
     const handleDelete = (id: number) => {
-        setData(data.filter(i => i.id !== id))
+        // setData(data.filter(i => i.id !== id))
     }
 
     const actionColumn= [
@@ -32,21 +39,23 @@ const Datatable: React.FC = () => {
         }
     ]
 
+
     return(
         <>
             <div className="datatableTitle">
-                Add New User
+                {title}
                 <Link to='/users/new' className='link'>Add New</Link>
             </div>
 
             <div className="datatable">
                 <DataGrid
                     className='datagrid'
-                    rows={data}
-                    columns={userColumns.concat(actionColumn)}
+                    rows={rows}
+                    columns={columns.concat(actionColumn)}
                     pageSize={9}
                     rowsPerPageOptions={[9]}
                     checkboxSelection
+                    getRowId={row => row._id}
                 />
             </div>
         </>

@@ -3,11 +3,14 @@ import './list.scss'
 
 import Datatable from "../../components/datatable/Datatable"
 
-const List: React.FC = () => {
+interface IListProps {
+    type: string
+}
 
+const List: React.FC<IListProps> = ({type}) => {
     return(
         <div className='list'>
-            <Datatable />
+            <Datatable type={type}/>
         </div>
     )
 }

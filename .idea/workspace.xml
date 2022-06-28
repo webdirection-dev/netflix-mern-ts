@@ -29,25 +29,26 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/admin/Development/courses/netflix-mern-ts/admin/src",
+    "last_opened_file_path": "/Users/admin/Development/courses/netflix-mern-ts/admin/src/context/movieContext",
     "list.type.of.created.stylesheet": "SCSS",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_interpreter_path": "node",
     "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "/Users/admin/Development/courses/netflix-mern-ts/api/node_modules/typescript/lib"
+    "ts.external.directory.path": "/Users/admin/Development/courses/netflix-mern-ts/admin/node_modules/typescript/lib"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/admin/src/context/movieContext" />
       <recent name="$PROJECT_DIR$/admin/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/admin/src/context" />
       <recent name="$PROJECT_DIR$/admin/src" />
       <recent name="$PROJECT_DIR$/admin/src/context/authContext" />
       <recent name="$PROJECT_DIR$/admin/src/components/imgBackground" />
       <recent name="$PROJECT_DIR$/admin/src/static-data" />
-      <recent name="$PROJECT_DIR$/admin/src/static-data/types" />
     </key>
   </component>
   <component name="RunManager" selected="npm.npm start">
@@ -88,6 +89,8 @@
       <workItem from="1656133434568" duration="24202000" />
       <workItem from="1656163795436" duration="184000" />
       <workItem from="1656314023901" duration="7213000" />
+      <workItem from="1656395310608" duration="16878000" />
+      <workItem from="1656418521276" duration="351000" />
     </task>
     <servers />
   </component>

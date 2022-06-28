@@ -1,6 +1,6 @@
 import {createContext, useReducer, PropsWithChildren, ReducerWithoutAction, useEffect} from "react"
 import AuthReducer from "./AuthReducer"
-import {IAuthUserState} from "../../types/autchTypes"
+import {IAuthUserState} from "../../types/apiTypes"
 
 const INITIAL_STATE = {
     user: JSON.parse(localStorage.getItem('user') as string) || null,

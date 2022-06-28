@@ -16,24 +16,16 @@ function App() {
     const [dark, setDark] = useState(false)
     useChangeTheme(dark)
 
-    const auth = user ? user.isAdmin : false
-
     return (
         <>
-            {
-                !auth
-                    ? <Routes>
-                        <Route path='/' element={<Navigate to='/login' replace={true}/>} />
-                        <Route path="login" element={<Login />} />
-                        <Route path="*" element={<NotFond />} />
-                    </Routes>
-                    : <Routes>
-                        <Route path="login" element={<Navigate to='/' replace={true} />} />
-                    </Routes>
-            }
+            <Routes>
+                <Route path='/' element={!user && <Navigate to='/login' replace={true}/>} />
+                <Route path='/login' element={user ? <Navigate to='/' replace={true}/> : <Login />} />
+                <Route path="*" element={!user && <NotFond />} />
+            </Routes>
 
             {
-                auth && (
+                user && (
                     <div className='app'>
                         <Sidebar setDark={setDark} dark={dark}/>
 
@@ -44,6 +36,32 @@ function App() {
                     </div>
                 )
             }
+
+
+            {/*{*/}
+            {/*    !auth*/}
+            {/*        ? <Routes>*/}
+            {/*            <Route path='/' element={<Navigate to='/login' replace={true}/>} />*/}
+            {/*            <Route path="login" element={<Login />} />*/}
+            {/*            <Route path="*" element={<NotFond />} />*/}
+            {/*        </Routes>*/}
+            {/*        : <Routes>*/}
+            {/*            <Route path="login" element={<Navigate to='/' replace={true} />} />*/}
+            {/*        </Routes>*/}
+            {/*}*/}
+
+            {/*{*/}
+            {/*    auth && (*/}
+            {/*        <div className='app'>*/}
+            {/*            <Sidebar setDark={setDark} dark={dark}/>*/}
+
+            {/*            <div className="container">*/}
+            {/*                <Navbar setDark={setDark} dark={dark}/>*/}
+            {/*                <Main />*/}
+            {/*            </div>*/}
+            {/*        </div>*/}
+            {/*    )*/}
+            {/*}*/}
         </>
 
     )

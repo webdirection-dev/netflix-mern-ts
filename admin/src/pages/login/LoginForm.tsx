@@ -1,5 +1,5 @@
 import React, {useState, useContext} from "react"
-import {loginCall} from "../../context/authContext/apiCalls"
+import {loginCall} from "../../context/apiCalls"
 import {AuthContext} from "../../context/authContext/AuthContext"
 
 const LoginForm = () => {
