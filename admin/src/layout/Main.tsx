@@ -21,13 +21,13 @@ const Main: React.FC = () => {
                     <Route index element={!user ? <Navigate to='/login' replace={true}/> : <Home />} />
 
                     <Route path="users">
-                        <Route index element={<List type='users'/>} />
+                        <Route index element={<List type='user'/>} />
                         <Route path=":userId" element={<Single />} />
                         <Route path="new" element={<New inputs={userInputs}/>} />
                     </Route>
 
                     <Route path="movies">
-                        <Route index element={<List type='movies'/>} />
+                        <Route index element={<List type='movie'/>} />
                         <Route path=":movieId" element={<Single />} />
                         <Route path="new" element={<New inputs={movieInputs}/>} />
                     </Route>

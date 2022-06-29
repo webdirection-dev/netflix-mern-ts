@@ -1,38 +1,35 @@
 import {useContext, useEffect} from "react"
 
 import {MovieContext} from "../../context/movieContext/MovieContext"
-import {getMovies} from "../../context/apiCalls"
+import {getMovies, deleteMovie} from "../../context/apiCalls"
 
-import {moviesColumns, userColumns, userRows} from "../../static-data/data/datatable-data"
+import {moviesColumns} from "../../static-data/data/datatable-data"
 
 export const useGetDataForDatatable = (type: string) => {
-    const {movies} = useContext(MovieContext)
-
     const context =
-        type === 'movies' ? MovieContext :
-        type === 'user' ? MovieContext : MovieContext
-
-    const columns =
-        type === 'movies' ? moviesColumns :
-        type === 'users' ? userColumns : []
-
-    const rows =
-        type === 'movies' ? movies :
-        type === 'users' ? userRows : []
-
-    const title =
-        type === 'movies' ? 'Add New Movie' :
-        type === 'users' ? 'Add New User' : ''
+        type === 'movie' ? MovieContext : MovieContext
 
     const {dispatch} = useContext(context)
+    const {movies} = useContext(MovieContext)
+
+    const columns =
+        type === 'movie' ? moviesColumns : []
+
+    const rows =
+        type === 'movie' ? movies : []
+
+    const title = type[0].toUpperCase() + type.slice(1)
+
+    const deleteItem = (id: string) => {
+        deleteMovie(id, dispatch)
+    }
 
     useEffect(() => {
         const getApi =
-            type === 'movies' ? getMovies :
-            type === 'users' ? getMovies : Function()
+            type === 'movie' ? getMovies : Function()
 
         getApi(dispatch)
     }, [dispatch, type])
 
-    return {columns, rows, title}
+    return {columns, rows, title, deleteItem}
 }

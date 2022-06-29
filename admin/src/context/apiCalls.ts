@@ -1,7 +1,13 @@
 import axios from "axios"
 
 import {loginFailure, loginStart, loginSuccess} from "./authContext/AuthActions"
-import {getMoviesStart, getMoviesSuccess, getMoviesFailure} from "./movieContext/MovieActions"
+import {
+    getMoviesStart,
+    getMoviesSuccess,
+    getMoviesFailure,
+    deleteMovieStart,
+    deleteMoviesSuccess, deleteMoviesFailure
+} from "./movieContext/MovieActions"
 
 import {TAuthDispatch, TMovieDispatch} from "../types/apiTypes"
 
@@ -46,6 +52,30 @@ export const getMovies = async (dispatch: TMovieDispatch) => {
         if (dispatch) dispatch(getMoviesSuccess(res.data))
     } catch (err) {
         if (dispatch) dispatch(getMoviesFailure())
+        console.error(err)
+    }
+}
+
+
+//delete
+export const deleteMovie = async (id: string, dispatch: TMovieDispatch) => {
+    if (dispatch) dispatch(deleteMovieStart())
+
+    const user = JSON.parse(localStorage.getItem('user') as string)
+
+    try {
+        await axios.delete(
+            '/movies/'+id,
+            {
+                headers: {
+                    authorization: 'Bearer ' + user.accessToken
+                }
+            }
+        )
+
+        if (dispatch) dispatch(deleteMoviesSuccess(id))
+    } catch (err) {
+        if (dispatch) dispatch(deleteMoviesFailure())
         console.error(err)
     }
 }

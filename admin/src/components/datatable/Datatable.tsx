@@ -1,23 +1,23 @@
-import React, {useContext, useEffect} from "react"
+import React, {useState} from "react"
 import {Link} from 'react-router-dom'
 import './datatable.scss'
 
+import {userColumns, userRows} from "../../static-data/data/datatable-data"
 import {DataGrid} from '@mui/x-data-grid'
-import {useGetDataForDatatable} from "./use-get-data-for-datatable"
-import {MovieContext} from "../../context/movieContext/MovieContext";
-import {moviesColumns} from "../../static-data/data/datatable-data";
-import {getMovies} from "../../context/apiCalls";
+
+import {useGetDataForDatatable} from "./use-get-data-for-datatable";
 
 interface IDatatableProps {
     type: string
 }
 
-
 const Datatable: React.FC<IDatatableProps> = ({type}) => {
-    const {columns, rows, title} = useGetDataForDatatable(type)
+    const {columns, rows, title, deleteItem} = useGetDataForDatatable(type)
+    const [data, setData] = useState(userRows) // заглушка для юзеров
 
-    const handleDelete = (id: number) => {
-        // setData(data.filter(i => i.id !== id))
+    const handleDelete = (id: string) => {
+        if (type === 'user') setData(data.filter(i => i._id !== id))
+        else deleteItem(id)
     }
 
     const actionColumn= [
@@ -25,33 +25,32 @@ const Datatable: React.FC<IDatatableProps> = ({type}) => {
             field: 'action',
             headerName: 'Action',
             width: 200,
-            renderCell: (params: {row: {id: number}}) => {
+            renderCell: (params: {row: {_id: string}}) => {
                 return (
                     <div className="cellAction">
                         <Link to='/users/test' style={{textDecoration: 'none'}}>
                             <div className="viewButton">View</div>
                         </Link>
 
-                        <div className="deleteButton" onClick={() => handleDelete(params.row.id)}>Delete</div>
+                        <div className="deleteButton" onClick={() => handleDelete(params.row._id)}>Delete</div>
                     </div>
                 );
             },
         }
     ]
 
-
     return(
         <>
             <div className="datatableTitle">
-                {title}
+                Add New {title}
                 <Link to='/users/new' className='link'>Add New</Link>
             </div>
 
             <div className="datatable">
                 <DataGrid
                     className='datagrid'
-                    rows={rows}
-                    columns={columns.concat(actionColumn)}
+                    rows={type === 'user' ? data : rows}
+                    columns={type === 'user' ? userColumns.concat(actionColumn) : columns.concat(actionColumn)}
                     pageSize={9}
                     rowsPerPageOptions={[9]}
                     checkboxSelection

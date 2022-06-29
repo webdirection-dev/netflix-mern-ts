@@ -11,6 +11,7 @@ export interface IUser {
 }
 
 export interface IMovie {
+    _id: string | number;
     title: string;
     description: string;
     img: string;
