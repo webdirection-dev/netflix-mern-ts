@@ -1,18 +1,5 @@
-export interface INewItemInput {
-    id: number,
-    htmlId: string;
-    label: string;
-    type: string;
-    placeholder?: string;
-}
-
-export interface INewFormInput {
-    title: string,
-    data: INewItemInput[]
-}
-
 export const userInputs = {
-    title: 'Add New User',
+    title: 'User',
     data: [
         {
             id: 1,
@@ -66,14 +53,14 @@ export const userInputs = {
 }
 
 export const movieInputs = {
-    title: 'Add New Movie',
+    title: 'Movie',
     data: [
         {
             id: 1,
             htmlId: 'title',
             label: "Title",
             type: "text",
-            placeholder: "Apple Macbook Pro",
+            placeholder: "John Wick",
         },
         {
             id: 2,
@@ -84,24 +71,43 @@ export const movieInputs = {
         },
         {
             id: 3,
-            htmlId: 'category',
-            label: "Category",
+            htmlId: 'year',
+            label: "Year",
             type: "text",
-            placeholder: "Computers",
+            placeholder: "Year",
         },
         {
             id: 4,
-            htmlId: 'price',
-            label: "Price",
+            htmlId: 'genre',
+            label: "Genre",
             type: "text",
-            placeholder: "100",
+            placeholder: "Genre",
         },
         {
             id: 5,
-            htmlId: 'stock',
-            label: "Stock",
+            htmlId: 'duration',
+            label: "Duration",
             type: "text",
-            placeholder: "in stock",
+            placeholder: "Duration",
+        },
+        {
+            id: 6,
+            htmlId: 'limit',
+            label: "Limit",
+            type: "text",
+            placeholder: "Limit",
+        },
+        {
+            id: 7,
+            htmlId: 'trailer',
+            label: "Trailer",
+            type: "file",
+        },
+        {
+            id: 8,
+            htmlId: 'video',
+            label: "Video",
+            type: "file",
         },
     ]
 }

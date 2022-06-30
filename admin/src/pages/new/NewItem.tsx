@@ -1,6 +1,6 @@
 import React from "react"
 import {MdOutlineDriveFolderUpload} from "react-icons/md"
-import {INewItemInput} from "../../static-data/data/form-source"
+import {INewItemInput} from "../../types/types"
 
 const NewItem: React.FC<INewItemInput> = (props) => {
     const {id, htmlId, label, type, placeholder} = props
@@ -18,6 +18,7 @@ const NewItem: React.FC<INewItemInput> = (props) => {
             <input
                 type={type}
                 id={htmlId}
+                name={htmlId}
                 placeholder={placeholder}
                 style={id === 0 ? {display: 'none'} : undefined}
             />

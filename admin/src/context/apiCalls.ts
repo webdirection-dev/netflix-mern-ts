@@ -56,8 +56,7 @@ export const getMovies = async (dispatch: TMovieDispatch) => {
     }
 }
 
-
-//delete
+//delete movie
 export const deleteMovie = async (id: string, dispatch: TMovieDispatch) => {
     if (dispatch) dispatch(deleteMovieStart())
 

@@ -74,11 +74,28 @@
     }
 
     .bottom {
+        position: relative;
         -webkit-box-shadow: var(--box-shadow-widget);
         box-shadow: var(--box-shadow-widget);
         background-color: var(--colors-bg);
         margin: 20px;
         padding: 10px 20px 20px 20px;
+    }
+
+    .closeButton {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 12px;
+        color: white;
+        background-color: var(--colors-title);
+        border-radius: 0 0 0 5px;
+        padding: 3px 10px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--colors-bg-edit);
+        }
     }
 
     .title {
@@ -87,5 +104,70 @@
         font-size: 16px;
         font-weight: 400;
         margin-bottom: 20px;
+    }
+
+    .editForm {
+        display: flex;
+        justify-content: space-between;
+
+        .editFormLeft {
+            display: flex;
+            flex-direction: column;
+
+            & label {
+                margin-bottom: 10px;
+                color: gray;
+            }
+
+            & input {
+                margin-bottom: 10px;
+                border: none;
+                padding: 5px;
+                border-bottom: 1px solid gray;
+            }
+
+            & select {
+                margin-bottom: 10px;
+            }
+        }
+
+        .editFormRight {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+
+            .upload {
+                & label {
+                    display: flex;
+                    align-items: center;
+                }
+
+                .uploadImg {
+                    width: 100px;
+                    height: 100px;
+                    border-radius: 10px;
+                    object-fit: cover;
+                    margin-right: 20px;
+                }
+
+                .icon {
+                    font-size: 36px;
+                }
+            }
+
+            .editButton{
+                border: none;
+                padding: 5px;
+                border-radius: 5px;
+                background-color: var(--colors-title);
+                color:white;
+                font-weight: 600;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: var(--colors-bg-edit);
+                }
+            }
+        }
     }
 }

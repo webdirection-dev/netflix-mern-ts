@@ -1,3 +1,4 @@
+//users from MongoDB
 export interface IUser {
     _id: string;
     createdAt: string;
@@ -10,6 +11,7 @@ export interface IUser {
     accessToken?: string;
 }
 
+//movie from MongoDB
 export interface IMovie {
     _id: string | number;
     title: string;
@@ -23,4 +25,28 @@ export interface IMovie {
     limit: number;
     genre: string;
     isSeries: boolean;
+}
+
+// users from LocalDB
+export interface IUserRows {
+    _id: string;
+    username: string;
+    img: string;
+    status: string;
+    email: string;
+    age: number;
+}
+
+//form Add New User
+export interface INewItemInput {
+    id: number,
+    htmlId: string;
+    label: string;
+    type: string;
+    placeholder?: string;
+}
+
+export interface INewFormInput {
+    title: string,
+    data: INewItemInput[]
 }

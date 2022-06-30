@@ -28,7 +28,11 @@ const Datatable: React.FC<IDatatableProps> = ({type}) => {
             renderCell: (params: {row: {_id: string}}) => {
                 return (
                     <div className="cellAction">
-                        <Link to='/users/test' style={{textDecoration: 'none'}}>
+                        <Link
+                            style={{textDecoration: 'none'}}
+                            to={`/${type+'s'}/`+params.row._id}
+                            state={{ props: params.row }}
+                        >
                             <div className="viewButton">View</div>
                         </Link>
 
@@ -43,7 +47,7 @@ const Datatable: React.FC<IDatatableProps> = ({type}) => {
         <>
             <div className="datatableTitle">
                 Add New {title}
-                <Link to='/users/new' className='link'>Add New</Link>
+                <Link to={`/${title.toLowerCase()}s/new`} className='link'>Add New</Link>
             </div>
 
             <div className="datatable">
