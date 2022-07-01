@@ -6,7 +6,8 @@ import {
     getMoviesSuccess,
     getMoviesFailure,
     deleteMovieStart,
-    deleteMoviesSuccess, deleteMoviesFailure
+    deleteMoviesSuccess,
+    deleteMoviesFailure,
 } from "./movieContext/MovieActions"
 
 import {TAuthDispatch, TMovieDispatch} from "../types/apiTypes"

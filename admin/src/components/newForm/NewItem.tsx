@@ -2,8 +2,12 @@ import React from "react"
 import {MdOutlineDriveFolderUpload} from "react-icons/md"
 import {INewItemInput} from "../../types/types"
 
-const NewItem: React.FC<INewItemInput> = (props) => {
-    const {id, htmlId, label, type, placeholder} = props
+interface IPropsNewInput extends INewItemInput{
+    handleChangeText: (e: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+const NewItem: React.FC<IPropsNewInput> = (props) => {
+    const {id, htmlId, label, type, placeholder, handleChangeText} = props
 
     return(
         <div className="formInput">
@@ -21,6 +25,7 @@ const NewItem: React.FC<INewItemInput> = (props) => {
                 name={htmlId}
                 placeholder={placeholder}
                 style={id === 0 ? {display: 'none'} : undefined}
+                onChange={e => handleChangeText(e)}
             />
         </div>
     )

@@ -97,17 +97,5 @@ export const movieInputs = {
             type: "text",
             placeholder: "Limit",
         },
-        {
-            id: 7,
-            htmlId: 'trailer',
-            label: "Trailer",
-            type: "file",
-        },
-        {
-            id: 8,
-            htmlId: 'video',
-            label: "Video",
-            type: "file",
-        },
     ]
 }

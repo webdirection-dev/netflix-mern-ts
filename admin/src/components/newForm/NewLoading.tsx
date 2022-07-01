@@ -1,0 +1,95 @@
+import React from "react"
+import {MdOutlineDriveFolderUpload} from "react-icons/md"
+
+interface IPropsLoading {
+    handleChangeText: (e: React.ChangeEvent<HTMLSelectElement>) => void
+    handleChangeFile: (e: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+const NewLoading: React.FC<IPropsLoading> = ({handleChangeFile, handleChangeText}) => {
+
+    return(
+        <>
+            <div className="loadImg">
+                <div>
+                    <label htmlFor='img' className='img'>
+                        Image: <MdOutlineDriveFolderUpload className='icon'/>
+                    </label>
+
+                    <input
+                        type='file'
+                        id='img'
+                        name='img'
+                        style={{display: 'none'}}
+                        onChange={(e) => handleChangeFile(e)}
+                    />
+                </div>
+
+                <div>
+                    <label htmlFor='imgTitle' className='img'>
+                        Title image: <MdOutlineDriveFolderUpload className='icon'/>
+                    </label>
+
+                    <input
+                        type='file'
+                        id='imgTitle'
+                        name='imgTitle'
+                        style={{display: 'none'}}
+                        onChange={(e) => handleChangeFile(e)}
+                    />
+                </div>
+
+                <div>
+                    <label htmlFor='imgSmall' className='img'>
+                        Thumbnail image: <MdOutlineDriveFolderUpload className='icon'/>
+                    </label>
+
+                    <input
+                        type='file'
+                        id='imgSmall'
+                        name='imgSmall'
+                        style={{display: 'none'}}
+                        onChange={(e) => handleChangeFile(e)}
+                    />
+                </div>
+            </div>
+
+            <div className="loadVideo">
+                <div className="loadVideoForm">
+                    <label htmlFor='trailer'>Trailer:</label>
+                    <input
+                        type='file'
+                        id='trailer'
+                        name='trailer'
+                        onChange={(e) => handleChangeFile(e)}
+                    />
+                </div>
+
+                <div className="loadVideoForm">
+                    <label htmlFor='video'>Video:</label>
+                    <input
+                        type='file'
+                        id='video'
+                        name='video'
+                        onChange={(e) => handleChangeFile(e)}
+                    />
+                </div>
+            </div>
+
+            <div className="isSerials">
+                <label htmlFor='isSerials'>Is series?</label>
+
+                <select
+                    name='isSerials'
+                    id='isSerials'
+                    onChange={e => handleChangeText(e)}
+                >
+                    <option value='false'>No</option>
+                    <option value='true'>Yes</option>
+                </select>
+            </div>
+        </>
+    )
+}
+
+export default NewLoading
