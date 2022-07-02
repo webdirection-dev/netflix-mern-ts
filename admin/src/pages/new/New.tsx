@@ -1,49 +1,22 @@
-import React, {useState} from "react"
+import React from "react"
 import './new.scss'
 
 import NewLoading from "../../components/newForm/NewLoading"
 import NewItem from "../../components/newForm/NewItem"
 
 import {MdOutlineDriveFolderUpload} from "react-icons/md"
-
 import {INewFormInput} from "../../types/types"
+
+import {useUploadFirebase} from "./use-upload-firebase"
 
 interface INewForm {
     inputs: INewFormInput;
 }
 
 const New: React.FC<INewForm> = ({inputs}) => {
-    // const [file, setFile] = useState('' as string | File)
-    const [item, setItem] = useState({})
-    const [files, setFiles] = useState({})
-
+    const {handleChangeText, handleChangeFile, handleUpload, uploaded} = useUploadFirebase()
     const {title, data} = inputs
-    const imgUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrJgwdOAjqaZGS7kn35IVm_ZN6E4XFuJ7V_g&usqp=CAU'
-
-    const handleChangeText = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        e.preventDefault()
-        const value = e.target.value
-        const name = e.target.name
-
-        setItem({
-            ...item,
-            [name]: value
-        })
-    }
-
-    const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-        e.preventDefault()
-        const value = e.target.files
-        const name = e.target.name
-
-        if (value !== null) {
-            setFiles({
-                ...files,
-                [name]: value[0]
-            })
-        }
-    }
-
+    const imgUrl = 'https://firebasestorage.googleapis.com/v0/b/netflix-a1cac.appspot.com/o/static-ui-images%2Fno-images.png?alt=media&token=662c7049-5349-48e1-9620-b0399764fa8a'
     return(
         <div className='new'>
             <div className="top">
@@ -52,13 +25,11 @@ const New: React.FC<INewForm> = ({inputs}) => {
 
             <div className="bottom">
                 <div className="left">
-                    <img
-                        src={imgUrl}
-                        // src={file ? URL.createObjectURL(file as Blob | MediaSource) : imgUrl}
-                        alt="img"
-                    />
+                    <img src={imgUrl} alt="img"/>
 
-                    {title === 'Movie' && <NewLoading handleChangeFile={handleChangeFile} handleChangeText={handleChangeText}/>}
+                    {
+                        title === 'Movie' && <NewLoading handleChangeFile={handleChangeFile} handleChangeText={handleChangeText}/>
+                    }
                 </div>
 
                 <div className="right">
@@ -80,7 +51,12 @@ const New: React.FC<INewForm> = ({inputs}) => {
                         )}
 
                         {data.map(i => <NewItem key={i.id} handleChangeText={handleChangeText} {...i}/>)}
-                        <button>Send</button>
+
+                        {
+                            uploaded === 5
+                                ? <button>Send</button>
+                                : <button onClick={e => handleUpload(e)}>Upload</button>
+                        }
                     </form>
                 </div>
             </div>

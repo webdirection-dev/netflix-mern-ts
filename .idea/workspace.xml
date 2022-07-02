@@ -12,8 +12,8 @@
       <list>
         <option value="SCSS File" />
         <option value="JavaScript File" />
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -36,7 +36,7 @@
     "nodejs_interpreter_path": "node",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "actions.on.save",
-    "ts.external.directory.path": "/Users/admin/Development/courses/netflix-mern-ts/api/node_modules/typescript/lib"
+    "ts.external.directory.path": "/Users/admin/Development/courses/netflix-mern-ts/admin/node_modules/typescript/lib"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -97,6 +97,7 @@
       <workItem from="1656572917211" duration="16780000" />
       <workItem from="1656657357537" duration="539000" />
       <workItem from="1656658270632" duration="8856000" />
+      <workItem from="1656748087510" duration="15115000" />
     </task>
     <servers />
   </component>
