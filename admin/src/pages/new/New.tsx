@@ -14,9 +14,21 @@ interface INewForm {
 }
 
 const New: React.FC<INewForm> = ({inputs}) => {
-    const {handleChangeText, handleChangeFile, handleUpload, uploaded} = useUploadFirebase()
+    const {
+        imgUrl,
+        handleChangeText,
+        handleChangeFile,
+        handleUpload,
+        handleMovieAvatar,
+        uploaded,
+        handleSubmit,
+        filesLength,
+        isCheckItem,
+        itemLength,
+        filesLengthInItem,
+    } = useUploadFirebase()
     const {title, data} = inputs
-    const imgUrl = 'https://firebasestorage.googleapis.com/v0/b/netflix-a1cac.appspot.com/o/static-ui-images%2Fno-images.png?alt=media&token=662c7049-5349-48e1-9620-b0399764fa8a'
+
     return(
         <div className='new'>
             <div className="top">
@@ -28,7 +40,19 @@ const New: React.FC<INewForm> = ({inputs}) => {
                     <img src={imgUrl} alt="img"/>
 
                     {
-                        title === 'Movie' && <NewLoading handleChangeFile={handleChangeFile} handleChangeText={handleChangeText}/>
+                        title !== 'User' && (
+                            <>
+                                <NewLoading
+                                    handleChangeFile={handleChangeFile}
+                                    handleChangeText={handleChangeText}
+                                    handleMovieAvatar={handleMovieAvatar}
+                                />
+
+                                {filesLength < 5 && <button className='disabled'>DISABLED</button>}
+                                {uploaded < 5 && filesLength === 5 && <button onClick={e => handleUpload(e)}>UPLOAD</button>}
+                                {uploaded === 5 && filesLength === 5 && <button className='disabled'>READY</button>}
+                            </>
+                        )
                     }
                 </div>
 
@@ -51,13 +75,11 @@ const New: React.FC<INewForm> = ({inputs}) => {
                         )}
 
                         {data.map(i => <NewItem key={i.id} handleChangeText={handleChangeText} {...i}/>)}
-
-                        {
-                            uploaded === 5
-                                ? <button>Send</button>
-                                : <button onClick={e => handleUpload(e)}>Upload</button>
-                        }
                     </form>
+
+                    {!isCheckItem && <button className='disabled'>DISABLED</button>}
+                    {isCheckItem && itemLength === 11 && <button onClick={e => handleSubmit(e)}>SEND</button>}
+                    {isCheckItem && filesLengthInItem < 5 && <button className='disabled'>READY</button>}
                 </div>
             </div>
         </div>

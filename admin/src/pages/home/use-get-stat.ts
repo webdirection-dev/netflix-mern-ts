@@ -2,7 +2,7 @@ import {useEffect, useState} from "react"
 import axios from "axios"
 import {MONTHS, IDataForRender} from "../../static-data/data/stat-data"
 
-import {MY_TOKEN} from "../../static-data/config"
+import {MY_TOKEN} from "../../configs/config"
 const token = `Bearer ${MY_TOKEN}`
 
 interface IStatFromMongo {

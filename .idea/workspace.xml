@@ -36,7 +36,7 @@
     "nodejs_interpreter_path": "node",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "actions.on.save",
-    "ts.external.directory.path": "/Users/admin/Development/courses/netflix-mern-ts/admin/node_modules/typescript/lib"
+    "ts.external.directory.path": "/Users/admin/Development/courses/netflix-mern-ts/api/node_modules/typescript/lib"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -45,11 +45,11 @@
       <recent name="$PROJECT_DIR$/admin/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/admin/src/configs" />
       <recent name="$PROJECT_DIR$/admin/src/components/newForm" />
       <recent name="$PROJECT_DIR$/admin/src/context" />
       <recent name="$PROJECT_DIR$/admin/src" />
       <recent name="$PROJECT_DIR$/admin/src/context/authContext" />
-      <recent name="$PROJECT_DIR$/admin/src/components/imgBackground" />
     </key>
   </component>
   <component name="RunManager" selected="npm.npm start">
@@ -98,6 +98,7 @@
       <workItem from="1656657357537" duration="539000" />
       <workItem from="1656658270632" duration="8856000" />
       <workItem from="1656748087510" duration="15115000" />
+      <workItem from="1656830921811" duration="19571000" />
     </task>
     <servers />
   </component>

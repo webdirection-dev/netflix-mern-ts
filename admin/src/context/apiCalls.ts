@@ -8,6 +8,9 @@ import {
     deleteMovieStart,
     deleteMoviesSuccess,
     deleteMoviesFailure,
+    createMovieStart,
+    createMovieSuccess,
+    createMovieFailure,
 } from "./movieContext/MovieActions"
 
 import {TAuthDispatch, TMovieDispatch} from "../types/apiTypes"
@@ -53,6 +56,32 @@ export const getMovies = async (dispatch: TMovieDispatch) => {
         if (dispatch) dispatch(getMoviesSuccess(res.data))
     } catch (err) {
         if (dispatch) dispatch(getMoviesFailure())
+        console.error(err)
+    }
+}
+
+//create movies
+export const createMovies = async (item: {}, dispatch: TMovieDispatch) => {
+    if (dispatch) dispatch(createMovieStart())
+
+    const user = JSON.parse(localStorage.getItem('user') as string)
+
+    try {
+        const res = await axios.post(
+            '/movies',
+            item,
+            {
+                headers: {
+                    authorization: 'Bearer ' + user.accessToken
+                }
+            }
+        )
+
+        console.log(item)
+
+        if (dispatch) dispatch(createMovieSuccess(res.data))
+    } catch (err) {
+        if (dispatch) dispatch(createMovieFailure())
         console.error(err)
     }
 }

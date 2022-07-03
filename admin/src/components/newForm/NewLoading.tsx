@@ -4,9 +4,10 @@ import {MdOutlineDriveFolderUpload} from "react-icons/md"
 interface IPropsLoading {
     handleChangeText: (e: React.ChangeEvent<HTMLSelectElement>) => void
     handleChangeFile: (e: React.ChangeEvent<HTMLInputElement>) => void
+    handleMovieAvatar: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const NewLoading: React.FC<IPropsLoading> = ({handleChangeFile, handleChangeText}) => {
+const NewLoading: React.FC<IPropsLoading> = ({handleChangeFile, handleChangeText, handleMovieAvatar}) => {
 
     return(
         <>
@@ -21,8 +22,12 @@ const NewLoading: React.FC<IPropsLoading> = ({handleChangeFile, handleChangeText
                         id='img'
                         name='img'
                         style={{display: 'none'}}
-                        onChange={(e) => handleChangeFile(e)}
+                        onChange={(e) => {
+                            handleChangeFile(e)
+                            handleMovieAvatar(e)
+                        }}
                     />
+
                 </div>
 
                 <div>
@@ -76,12 +81,12 @@ const NewLoading: React.FC<IPropsLoading> = ({handleChangeFile, handleChangeText
                 </div>
             </div>
 
-            <div className="isSerials">
-                <label htmlFor='isSerials'>Is series?</label>
+            <div className="isSeries">
+                <label htmlFor='isSeries'>Is series?</label>
 
                 <select
-                    name='isSerials'
-                    id='isSerials'
+                    name='isSeries'
+                    id='isSeries'
                     onChange={e => handleChangeText(e)}
                 >
                     <option value='false'>No</option>
