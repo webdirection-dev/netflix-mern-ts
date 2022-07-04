@@ -77,8 +77,6 @@ export const createMovies = async (item: {}, dispatch: TMovieDispatch) => {
             }
         )
 
-        console.log(item)
-
         if (dispatch) dispatch(createMovieSuccess(res.data))
     } catch (err) {
         if (dispatch) dispatch(createMovieFailure())

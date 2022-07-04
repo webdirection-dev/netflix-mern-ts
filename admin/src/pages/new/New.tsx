@@ -24,8 +24,8 @@ const New: React.FC<INewForm> = ({inputs}) => {
         handleSubmit,
         filesLength,
         isCheckItem,
-        itemLength,
-        filesLengthInItem,
+        isFilesLengthInItem,
+        items,
     } = useUploadFirebase()
     const {title, data} = inputs
 
@@ -46,6 +46,7 @@ const New: React.FC<INewForm> = ({inputs}) => {
                                     handleChangeFile={handleChangeFile}
                                     handleChangeText={handleChangeText}
                                     handleMovieAvatar={handleMovieAvatar}
+                                    items={items}
                                 />
 
                                 {filesLength < 5 && <button className='disabled'>DISABLED</button>}
@@ -74,12 +75,12 @@ const New: React.FC<INewForm> = ({inputs}) => {
                             </div>
                         )}
 
-                        {data.map(i => <NewItem key={i.id} handleChangeText={handleChangeText} {...i}/>)}
+                        {data.map(i => <NewItem key={i.id} handleChangeText={handleChangeText} items={items} {...i}/>)}
                     </form>
 
                     {!isCheckItem && <button className='disabled'>DISABLED</button>}
-                    {isCheckItem && itemLength === 11 && <button onClick={e => handleSubmit(e)}>SEND</button>}
-                    {isCheckItem && filesLengthInItem < 5 && <button className='disabled'>READY</button>}
+                    {isCheckItem && isFilesLengthInItem && <button onClick={e => handleSubmit(e)}>SEND</button>}
+                    {isCheckItem && !isFilesLengthInItem && <button className='disabled'>READY</button>}
                 </div>
             </div>
         </div>

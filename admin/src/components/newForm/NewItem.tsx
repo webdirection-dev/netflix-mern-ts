@@ -4,10 +4,11 @@ import {INewItemInput} from "../../types/types"
 
 interface IPropsNewInput extends INewItemInput{
     handleChangeText: (e: React.ChangeEvent<HTMLInputElement>) => void
+    items: {[key: string]: string | number}
 }
 
 const NewItem: React.FC<IPropsNewInput> = (props) => {
-    const {id, htmlId, label, type, placeholder, handleChangeText} = props
+    const {id, htmlId, label, type, placeholder, handleChangeText, items} = props
 
     return(
         <div className="formInput">
@@ -25,6 +26,7 @@ const NewItem: React.FC<IPropsNewInput> = (props) => {
                 name={htmlId}
                 placeholder={placeholder}
                 style={id === 0 ? {display: 'none'} : undefined}
+                value={items[htmlId] || ''}
                 onChange={e => handleChangeText(e)}
             />
         </div>

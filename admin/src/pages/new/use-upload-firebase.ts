@@ -23,13 +23,15 @@ interface IUpload {
 
 export const useUploadFirebase = () => {
     const {dispatch} = useContext(MovieContext)
-    const [item, setItem] = useState({} as IItem)
-    const [isCheckItem, setIsCheckItem] = useState(false)
-    const [itemLength, setItemLength] = useState(0)
+    const [items, setItems] = useState({} as IItem)
     const [files, setFiles] = useState({} as IFiles)
-    const [filesLengthInItem, setFilesLengthInItem] = useState(0)
+
+    const [isCheckItem, setIsCheckItem] = useState(false)
+    const [isFilesLengthInItem, setIsFilesLengthInItem] = useState(false)
+
     const [filesLength, setFilesLength] = useState(0)
     const [uploaded, setUploaded] = useState(0)
+
     const [movieAvatar, setMovieAvatar] = useState('' as string | File)
 
     const imgUrl = movieAvatar ?
@@ -41,8 +43,8 @@ export const useUploadFirebase = () => {
         const value = e.target.value
         const name = e.target.name
 
-        setItem({
-            ...item,
+        setItems({
+            ...items,
             [name]: value
         })
     }
@@ -94,7 +96,7 @@ export const useUploadFirebase = () => {
                     // Upload completed successfully, now we can get the download URL
                     getDownloadURL(uploadTask.snapshot.ref)
                         .then((downloadURL) => {
-                            setItem(prev => (
+                            setItems(prev => (
                                 {
                                     ...prev,
                                     [i.label]: downloadURL,
@@ -141,9 +143,24 @@ export const useUploadFirebase = () => {
 
     const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
-        createMovies(item, dispatch)
-        setItem({})
+        createMovies(items, dispatch)
+
+        setItems(() => {
+            const out = {} as IItem
+
+            for (let key in items) {
+                out[key] = ''
+            }
+
+            return out
+        })
+
+        setFiles({})
+        setIsCheckItem(false)
+        setIsFilesLengthInItem(false)
+        setFilesLength(0)
         setUploaded(0)
+        setMovieAvatar('')
     }
 
     const handleMovieAvatar = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -161,35 +178,27 @@ export const useUploadFirebase = () => {
     }, [files])
 
     useEffect(() => {
-        for (let key in item) {
-            setItemLength(itemLength + 1)
-        }
-    }, [item])
-
-    useEffect(() => {
-        for (let key in item) {
+        for (let key in items) {
             if (
-                key === 'img' ||
-                key === 'imgTitle' ||
-                key === 'imgSmall' ||
-                key === 'trailer' ||
-                key === 'video'
-            ) setFilesLengthInItem(filesLengthInItem + 1)
-        }
-    }, [item])
+                items.img &&
+                items.imgTitle &&
+                items.imgSmall &&
+                items.trailer &&
+                items.video
+            ) setIsFilesLengthInItem(true)
+            else setIsFilesLengthInItem(false)
 
-    useEffect(() => {
-        for (let key in item) {
             if (
-                (item.title && item.title !== '') &&
-                (item.description && item.description !== '') &&
-                (item.year && item.year !== '') &&
-                (item.genre && item.genre !== '') &&
-                (item.duration && item.duration !== '') &&
-                (item.limit && item.limit !== '')
+                (items.title && items.title !== '') &&
+                (items.description && items.description !== '') &&
+                (items.year && items.year !== '') &&
+                (items.genre && items.genre !== '') &&
+                (items.duration && items.duration !== '') &&
+                (items.limit && items.limit !== '')
             ) setIsCheckItem(true)
+            else setIsCheckItem(false)
         }
-    }, [item])
+    }, [items])
 
     return {
         imgUrl,
@@ -201,7 +210,7 @@ export const useUploadFirebase = () => {
         handleSubmit,
         filesLength,
         isCheckItem,
-        itemLength,
-        filesLengthInItem,
+        isFilesLengthInItem,
+        items,
     }
 }

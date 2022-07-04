@@ -36,7 +36,7 @@
     "nodejs_interpreter_path": "node",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "actions.on.save",
-    "ts.external.directory.path": "/Users/admin/Development/courses/netflix-mern-ts/api/node_modules/typescript/lib"
+    "ts.external.directory.path": "/Users/admin/Development/courses/netflix-mern-ts/client/node_modules/typescript/lib"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -99,6 +99,7 @@
       <workItem from="1656658270632" duration="8856000" />
       <workItem from="1656748087510" duration="15115000" />
       <workItem from="1656830921811" duration="19571000" />
+      <workItem from="1656918655064" duration="11356000" />
     </task>
     <servers />
   </component>
