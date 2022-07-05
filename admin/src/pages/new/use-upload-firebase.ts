@@ -4,6 +4,7 @@ import {getDownloadURL, ref, uploadBytesResumable} from "firebase/storage"
 
 import {MovieContext} from "../../context/movieContext/MovieContext"
 import {createMovies} from "../../context/apiCalls"
+import {noImg} from '../../static-data/img'
 
 type TFile = Blob | Uint8Array | ArrayBuffer
 
@@ -34,9 +35,7 @@ export const useUploadFirebase = () => {
 
     const [movieAvatar, setMovieAvatar] = useState('' as string | File)
 
-    const imgUrl = movieAvatar ?
-        URL.createObjectURL(movieAvatar as Blob | MediaSource) :
-        'https://firebasestorage.googleapis.com/v0/b/netflix-a1cac.appspot.com/o/static-ui-images%2Fno-images.png?alt=media&token=662c7049-5349-48e1-9620-b0399764fa8a'
+    const imgUrl = movieAvatar ? URL.createObjectURL(movieAvatar as Blob | MediaSource) : noImg
 
     const handleChangeText = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         e.preventDefault()

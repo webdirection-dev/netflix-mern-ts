@@ -18,6 +18,7 @@ body[data-theme='dark'] {
     --colors-text-nav: gray;
     --color-hover-txt: rgba(255, 255, 255, 0.86);
     --colors-title: #01b075;
+    --colors-popup-txt: #01b075;
 
     --colors-bg: #202125;
     --colors-bg-sub: #16171b;
@@ -25,6 +26,7 @@ body[data-theme='dark'] {
     --colors-bg-edit: rgba(1, 176, 117, 0.8);
     --colors-bg-newItem-media: #202125;
     --colors-bg-newItem-input: rgba(220, 220, 220, 0.15);
+    --colors-bg-popup: rgba(28, 27, 27, 0.6);
 
     --colors-border: #202125;
     --colors-border-switch-theme: #01b075;
@@ -42,6 +44,7 @@ body[data-theme='dark'] {
 
     --box-shadow-nav: none;
     --box-shadow-widget: none;
+    --box-shadow-popup: -7px 5px 5px -5px rgba(201, 201, 201, .6);
 
 }
 
@@ -53,11 +56,13 @@ body[data-theme='light'] {
     --colors-text-nav: #555555;
     --color-hover-txt: black;
     --colors-title: #6439ff;
+    --colors-popup-txt: black;
 
     --colors-bg: #ffffff;
     --colors-bg-active: rgba(112, 184, 92, 0.41);
     --colors-bg-edit: rgba(100, 57, 255, 0.8);
     --colors-bg-newItem-media: rgba(220, 220, 220, 0.15);
+    --colors-bg-popup: rgba(255, 253, 253, 0.46);
 
     --colors-border: rgb(228, 225, 225);
     --colors-border-switch-theme: #333333;
@@ -77,6 +82,7 @@ body[data-theme='light'] {
 
     --box-shadow-nav: -7px 5px 5px -5px rgba(201, 201, 201, .6);
     --box-shadow-widget: 2px 4px 10px 1px rgba(0, 0, 0, .47);
+    --box-shadow-popup: 2px 4px 10px 1px rgba(0, 0, 0, .47);
 }
 
 body {

@@ -10,10 +10,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="SCSS File" />
         <option value="JavaScript File" />
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="SCSS File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -36,7 +36,7 @@
     "nodejs_interpreter_path": "node",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "actions.on.save",
-    "ts.external.directory.path": "/Users/admin/Development/courses/netflix-mern-ts/client/node_modules/typescript/lib"
+    "ts.external.directory.path": "/Users/admin/Development/courses/netflix-mern-ts/api/node_modules/typescript/lib"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -100,6 +100,8 @@
       <workItem from="1656748087510" duration="15115000" />
       <workItem from="1656830921811" duration="19571000" />
       <workItem from="1656918655064" duration="11356000" />
+      <workItem from="1657004810116" duration="2026000" />
+      <workItem from="1657007981177" duration="17651000" />
     </task>
     <servers />
   </component>
