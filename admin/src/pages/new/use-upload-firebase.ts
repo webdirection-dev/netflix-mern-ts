@@ -5,6 +5,9 @@ import {getDownloadURL, ref, uploadBytesResumable} from "firebase/storage"
 import {MovieContext} from "../../context/movieContext/MovieContext"
 import {createMovies} from "../../context/apiCalls"
 import {noImg} from '../../static-data/img'
+import {movieInputs} from "../../static-data/data/form-source"
+
+const quantityInputs = movieInputs.data.length + movieInputs.loadingMedia.length
 
 type TFile = Blob | Uint8Array | ArrayBuffer
 
@@ -24,14 +27,12 @@ interface IUpload {
 
 export const useUploadFirebase = () => {
     const {dispatch} = useContext(MovieContext)
-    const [items, setItems] = useState({} as IItem)
+    const [items, setItems] = useState({isSeries: 'false'} as IItem) // isSeries НЕ УДАЛЯТЬ!!!
     const [files, setFiles] = useState({} as IFiles)
 
     const [isCheckItem, setIsCheckItem] = useState(false)
     const [isFilesLengthInItem, setIsFilesLengthInItem] = useState(false)
-
-    const [filesLength, setFilesLength] = useState(0)
-    const [uploaded, setUploaded] = useState(0)
+    const [isFilesFill, setIsFilesFill] = useState(false)
 
     const [movieAvatar, setMovieAvatar] = useState('' as string | File)
 
@@ -101,17 +102,15 @@ export const useUploadFirebase = () => {
                                     [i.label]: downloadURL,
                                 }
                             ))
-
-                            setUploaded(prev => prev + 1)
                         });
                 }
             );
         })
     }
 
-    const handleUpload = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const handleUpload = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
-        upload([
+        await upload([
             {
                 file: files.img.localFile as TFile,
                 label: 'img',
@@ -140,25 +139,12 @@ export const useUploadFirebase = () => {
         ])
     }
 
-    const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        e.preventDefault()
-        createMovies(items, dispatch)
-
-        setItems(() => {
-            const out = {} as IItem
-
-            for (let key in items) {
-                out[key] = ''
-            }
-
-            return out
-        })
-
+    const handleClearForm = () => {
+        setItems({isSeries: 'false'})
         setFiles({})
         setIsCheckItem(false)
         setIsFilesLengthInItem(false)
-        setFilesLength(0)
-        setUploaded(0)
+        setIsFilesFill(false)
         setMovieAvatar('')
     }
 
@@ -171,21 +157,16 @@ export const useUploadFirebase = () => {
     }
 
     useEffect(() => {
-        for (let key in files) {
-            setFilesLength(filesLength + 1)
-        }
+        let counter = 0
+        for (let key in files) {counter++}
+        if (counter === movieInputs.loadingMedia.length) setIsFilesFill(true)
+        else setIsFilesFill(false)
     }, [files])
 
     useEffect(() => {
+        let counter = 0
         for (let key in items) {
-            if (
-                items.img &&
-                items.imgTitle &&
-                items.imgSmall &&
-                items.trailer &&
-                items.video
-            ) setIsFilesLengthInItem(true)
-            else setIsFilesLengthInItem(false)
+            counter++
 
             if (
                 (items.title && items.title !== '') &&
@@ -193,23 +174,28 @@ export const useUploadFirebase = () => {
                 (items.year && items.year !== '') &&
                 (items.genre && items.genre !== '') &&
                 (items.duration && items.duration !== '') &&
-                (items.limit && items.limit !== '')
+                (items.limit && items.limit !== '') &&
+                (items.isSeries && items.isSeries !== '')
             ) setIsCheckItem(true)
             else setIsCheckItem(false)
         }
-    }, [items])
+
+        if (counter === quantityInputs) {
+            createMovies(items, dispatch)
+        }
+    }, [items, dispatch])
+
+    console.log(items)
 
     return {
         imgUrl,
         handleChangeText,
         handleChangeFile,
-        handleUpload,
         handleMovieAvatar,
-        uploaded,
-        handleSubmit,
-        filesLength,
+        handleClearForm,
+        handleUpload,
+        isFilesFill,
         isCheckItem,
         isFilesLengthInItem,
-        items,
     }
 }

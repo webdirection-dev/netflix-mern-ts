@@ -1,102 +1,64 @@
 import React from "react"
 import {MdOutlineDriveFolderUpload} from "react-icons/md"
 
+import {movieInputs} from "../../static-data/data/form-source"
+
 interface IPropsLoading {
-    handleChangeText: (e: React.ChangeEvent<HTMLSelectElement>) => void;
     handleChangeFile: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleMovieAvatar: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    items: {[key: string]: string | number};
 }
 
-const NewLoading: React.FC<IPropsLoading> = ({handleChangeFile, handleChangeText, handleMovieAvatar, items}) => {
+const NewLoading: React.FC<IPropsLoading> = ({handleChangeFile, handleMovieAvatar}) => {
 
     return(
         <>
             <div className="loadImg">
-                <div>
-                    <label htmlFor='img' className='img'>
-                        Image: <MdOutlineDriveFolderUpload className='icon'/>
-                    </label>
+                {
+                    movieInputs.loadingMedia.map(i => {
+                        if (i.flag === 'image') {
+                            return (
+                                <div key={i.id}>
+                                    <label htmlFor={i.htmlId} className='img'>
+                                        {i.label} <MdOutlineDriveFolderUpload className='icon'/>
+                                    </label>
 
-                    <input
-                        type='file'
-                        id='img'
-                        name='img'
-                        style={{display: 'none'}}
-                        // value={items.img || ''}
-                        onChange={(e) => {
-                            handleChangeFile(e)
-                            handleMovieAvatar(e)
-                        }}
-                    />
-
-                </div>
-
-                <div>
-                    <label htmlFor='imgTitle' className='img'>
-                        Title image: <MdOutlineDriveFolderUpload className='icon'/>
-                    </label>
-
-                    <input
-                        type='file'
-                        id='imgTitle'
-                        name='imgTitle'
-                        style={{display: 'none'}}
-                        // value={items.imgTitle || ''}
-                        onChange={(e) => handleChangeFile(e)}
-                    />
-                </div>
-
-                <div>
-                    <label htmlFor='imgSmall' className='img'>
-                        Thumbnail image: <MdOutlineDriveFolderUpload className='icon'/>
-                    </label>
-
-                    <input
-                        type='file'
-                        id='imgSmall'
-                        name='imgSmall'
-                        style={{display: 'none'}}
-                        // value={items.imgSmall || ''}
-                        onChange={(e) => handleChangeFile(e)}
-                    />
-                </div>
+                                    <input
+                                        type='file'
+                                        id={i.htmlId}
+                                        name={i.htmlId}
+                                        style={{display: 'none'}}
+                                        onChange={(e) => {
+                                            if (i.htmlId === 'img') {
+                                                handleChangeFile(e)
+                                                handleMovieAvatar(e)
+                                            } else handleChangeFile(e)
+                                        }}
+                                    />
+                                </div>
+                            )
+                        } else return null
+                    })
+                }
             </div>
 
             <div className="loadVideo">
-                <div className="loadVideoForm">
-                    <label htmlFor='trailer'>Trailer:</label>
-                    <input
-                        type='file'
-                        id='trailer'
-                        name='trailer'
-                        onChange={(e) => handleChangeFile(e)}
-                    />
-                </div>
-
-                <div className="loadVideoForm">
-                    <label htmlFor='video'>Video:</label>
-                    <input
-                        type='file'
-                        id='video'
-                        name='video'
-                        onChange={(e) => handleChangeFile(e)}
-                    />
-                </div>
-            </div>
-
-            <div className="isSeries">
-                <label htmlFor='isSeries'>Is series?</label>
-
-                <select
-                    name='isSeries'
-                    id='isSeries'
-                    value={items.isSeries || ''}
-                    onChange={e => handleChangeText(e)}
-                >
-                    <option value='false'>No</option>
-                    <option value='true'>Yes</option>
-                </select>
+                {
+                    movieInputs.loadingMedia.map(i => {
+                        if (i.flag === 'media') {
+                            return (
+                                <div key={i.id} className="loadVideoForm">
+                                    <label htmlFor={i.htmlId}>{i.label}</label>
+                                    <input
+                                        type='file'
+                                        id={i.htmlId}
+                                        name={i.htmlId}
+                                        onChange={(e) => handleChangeFile(e)}
+                                    />
+                                </div>
+                            )
+                        } else return null
+                    })
+                }
             </div>
         </>
     )

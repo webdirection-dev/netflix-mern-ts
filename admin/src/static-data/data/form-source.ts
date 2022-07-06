@@ -97,5 +97,48 @@ export const movieInputs = {
             type: "text",
             placeholder: "Limit",
         },
+        {
+            id: 7,
+            htmlId: 'isSeries',
+            label: "",
+            type: "",
+        },
+    ],
+    loadingMedia: [
+        {
+            id: 1,
+            htmlId: 'img',
+            label: "Image:",
+            type: "file",
+            flag: 'image'
+        },
+        {
+            id: 2,
+            htmlId: 'imgTitle',
+            label: "Title image:",
+            type: "file",
+            flag: 'image'
+        },
+        {
+            id: 3,
+            htmlId: 'imgSmall',
+            label: "Thumbnail image:",
+            type: "file",
+            flag: 'image'
+        },
+        {
+            id: 4,
+            htmlId: 'trailer',
+            label: "Trailer:",
+            type: "file",
+            flag: 'media'
+        },
+        {
+            id: 5,
+            htmlId: 'video',
+            label: "Video:",
+            type: "file",
+            flag: 'media'
+        }
     ]
 }

@@ -8,9 +8,13 @@ import {MdKeyboardArrowLeft, MdKeyboardArrowRight, MdOutlineClose} from "react-i
 interface IPropPopupNew {
     setIsShowPopup: Dispatch<SetStateAction<boolean>>;
     setIsResetMedia: Dispatch<SetStateAction<boolean>>;
+    handleShowPopup: () => void;
+    handleUpload: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
-const PopUpSubmitNew: React.FC<IPropPopupNew> = ({setIsShowPopup, setIsResetMedia}) => {
+const PopUpSubmitNew: React.FC<IPropPopupNew> = (props) => {
+    const {setIsShowPopup, setIsResetMedia, handleShowPopup, handleUpload} = props
+
     const {className, src} = useBgLogin()
     const popStyle = ` 
         linear-gradient(0deg, transparent 0%, rgba(34,193,195,.5) 15%, rgba(34,193,195,.8) 50%, transparent 100%),
@@ -35,12 +39,12 @@ const PopUpSubmitNew: React.FC<IPropPopupNew> = ({setIsShowPopup, setIsResetMedi
                 <div
                     className='close'
                     onClick={() => {
-                        setIsShowPopup(false)
+                        handleShowPopup()
                         setIsResetMedia(true)
                     }}
                 >
-                    <div className='icon'>
-                        <MdOutlineClose />
+                    <div className='icon' title='Clear form and Сlose'>
+                        <MdOutlineClose title='Clear form and Сlose'/>
                     </div>
                 </div>
 
@@ -57,7 +61,10 @@ const PopUpSubmitNew: React.FC<IPropPopupNew> = ({setIsShowPopup, setIsResetMedi
                     onClick={() => setIsShowPopup(false)
                 }>CHANGE <MdKeyboardArrowLeft /></button>
 
-                <button className='submit'>SUBMIT <MdKeyboardArrowRight /></button>
+                <button
+                    className='submit'
+                    onClick={e => handleUpload(e)}
+                >SUBMIT <MdKeyboardArrowRight /></button>
             </div>
         </div>
     )

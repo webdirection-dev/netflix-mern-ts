@@ -17,21 +17,26 @@ interface INewForm {
 
 const New: React.FC<INewForm> = ({inputs}) => {
     const {title, data} = inputs
-    const [isResetMedia, setIsResetMedia] = useState(false)
+    const [isResetMedia, setIsResetMedia] = useState(false) // Перерендер для очистки формы
     const [isShowPopup, setIsShowPopup] = useState(false)
     const {
         imgUrl,
         handleChangeText,
         handleChangeFile,
-        handleUpload,
         handleMovieAvatar,
-        uploaded,
-        handleSubmit,
-        filesLength,
+        handleClearForm,
+        handleUpload,
+        isFilesFill,
         isCheckItem,
-        isFilesLengthInItem,
-        items,
     } = useUploadFirebase()
+
+    const handleShowPopup = () => {
+        setTimeout(() => {
+          setIsShowPopup(false)
+        }, 10)
+
+        handleClearForm()
+    }
 
     useEffect(() => {
         setIsResetMedia(false)
@@ -52,15 +57,11 @@ const New: React.FC<INewForm> = ({inputs}) => {
                             <>
                                 <NewLoading
                                     handleChangeFile={handleChangeFile}
-                                    handleChangeText={handleChangeText}
                                     handleMovieAvatar={handleMovieAvatar}
-                                    items={items}
                                 />
 
-                                {filesLength < 5 && <button className='disabled'>DISABLED</button>}
-                                {/*{uploaded < 5 && filesLength === 5 && <button onClick={e => handleUpload(e)}>UPLOAD</button>}*/}
-                                {/*{uploaded === 5 && filesLength === 5 && <button className='disabled'>READY</button>}*/}
-                                {filesLength === 5 && <button className='disabled'>READY</button>}
+                                {!isFilesFill && <button className='disabled'>DISABLED</button>}
+                                {isFilesFill && <button className='disabled'>READY</button>}
                             </>
                         )
                     }
@@ -84,21 +85,24 @@ const New: React.FC<INewForm> = ({inputs}) => {
                             </div>
                         )}
 
-                        {data.map(i => <NewItem key={i.id} handleChangeText={handleChangeText} items={items} {...i}/>)}
+                        {
+                            !isResetMedia &&
+                            data.map(i => <NewItem key={i.id} handleChangeText={handleChangeText} {...i}/>)
+                        }
                     </form>
 
                     {!isCheckItem && <button className='disabled'>DISABLED</button>}
-                    {/*{isCheckItem && isFilesLengthInItem && <button onClick={e => handleSubmit(e)}>SEND</button>}*/}
-                    {/*{isCheckItem && !isFilesLengthInItem && <button className='disabled'>READY</button>}*/}
-                    {isCheckItem && filesLength === 5 && <button onClick={() => setIsShowPopup(true)}>SEND</button>}
-                    {isCheckItem && filesLength < 5 && <button className='disabled'>READY</button>}
+                    {isCheckItem && isFilesFill && <button onClick={() => setIsShowPopup(true)}>SEND</button>}
+                    {isCheckItem && !isFilesFill && <button className='disabled'>READY</button>}
                 </div>
             </div>
 
             {isShowPopup &&
                 <PopUpSubmitNew
+                    handleShowPopup={handleShowPopup}
                     setIsShowPopup={setIsShowPopup}
                     setIsResetMedia={setIsResetMedia}
+                    handleUpload={handleUpload}
                 />
             }
         </div>

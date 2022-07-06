@@ -71,15 +71,6 @@
                 }
             }
 
-            .isSeries {
-                display: flex;
-                align-items: center;
-                margin-top: 10px;
-                label {
-                    margin-right: 5px;
-                }
-            }
-
             button {
                 width: 150px;
                 color: white;
@@ -142,6 +133,15 @@
                         padding: 5px;
                         border: none;
                         border-bottom: 1px solid gray;
+                    }
+                }
+
+                .isSeries {
+                    display: flex;
+                    align-items: center;
+                    margin-top: 10px;
+                    label {
+                        margin-right: 5px;
                     }
                 }
             }
