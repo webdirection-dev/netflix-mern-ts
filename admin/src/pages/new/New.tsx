@@ -21,6 +21,7 @@ const New: React.FC<INewForm> = ({inputs}) => {
     const [isShowPopup, setIsShowPopup] = useState(false)
     const {
         imgUrl,
+        infoAboutItem,
         handleChangeText,
         handleChangeFile,
         handleMovieAvatar,
@@ -30,7 +31,7 @@ const New: React.FC<INewForm> = ({inputs}) => {
         isCheckItem,
     } = useUploadFirebase()
 
-    const handleShowPopup = () => {
+    const handleSwitchPopup = () => {
         setTimeout(() => {
           setIsShowPopup(false)
         }, 10)
@@ -97,12 +98,21 @@ const New: React.FC<INewForm> = ({inputs}) => {
                 </div>
             </div>
 
+            {/*<PopUpSubmitNew*/}
+            {/*    handleSwitchPopup={handleSwitchPopup}*/}
+            {/*    setIsShowPopup={setIsShowPopup}*/}
+            {/*    setIsResetMedia={setIsResetMedia}*/}
+            {/*    handleUpload={handleUpload}*/}
+            {/*    infoAboutItem={infoAboutItem}*/}
+            {/*/>*/}
+
             {isShowPopup &&
                 <PopUpSubmitNew
-                    handleShowPopup={handleShowPopup}
+                    handleSwitchPopup={handleSwitchPopup}
                     setIsShowPopup={setIsShowPopup}
                     setIsResetMedia={setIsResetMedia}
                     handleUpload={handleUpload}
+                    infoAboutItem={infoAboutItem}
                 />
             }
         </div>

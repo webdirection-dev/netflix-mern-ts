@@ -25,8 +25,9 @@ interface IUpload {
     path: string;
 }
 
-export const useUploadFirebase = () => {
-    const {dispatch} = useContext(MovieContext)
+export type TypeInfoAboutItem = IItem[]
+
+export const useUploadFirebase = () => {const {dispatch} = useContext(MovieContext)
     const [items, setItems] = useState({isSeries: 'false'} as IItem) // isSeries НЕ УДАЛЯТЬ!!!
     const [files, setFiles] = useState({} as IFiles)
 
@@ -35,6 +36,8 @@ export const useUploadFirebase = () => {
     const [isFilesFill, setIsFilesFill] = useState(false)
 
     const [movieAvatar, setMovieAvatar] = useState('' as string | File)
+
+    const [infoAboutItem, setInfoAboutItem] = useState([] as TypeInfoAboutItem)
 
     const imgUrl = movieAvatar ? URL.createObjectURL(movieAvatar as Blob | MediaSource) : noImg
 
@@ -75,19 +78,43 @@ export const useUploadFirebase = () => {
             uploadTask.on(
                 'state_changed',
 
-                (snapshot) => {
+                async (snapshot) => {
                     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
                     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    console.log('Upload is ' + progress + '% done');
+
+
+                    const elem = snapshot.ref.fullPath
+                        .split('/')[1]
+                        .split('-')[0]
 
                     switch (snapshot.state) {
                         case 'paused':
-                            console.log('Upload is paused');
+                            setInfoAboutItem(prev => [
+                                ...prev,
+                                {
+                                    name: elem + 'Snapshot',
+                                    value: 'Upload is paused'
+                                }
+                            ])
                             break;
                         case 'running':
-                            console.log('Upload is running');
+                            setInfoAboutItem(prev => [
+                                ...prev,
+                                {
+                                    name: elem + 'Snapshot',
+                                    value: 'Upload is running'
+                                }
+                            ])
                             break;
                     }
+
+                    setInfoAboutItem(prev => [
+                        ...prev,
+                        {
+                            name: elem + 'Snapshot',
+                            value: 'Upload is ' + progress + '%'
+                        }
+                    ])
                 },
 
                 (err) => console.error(err),
@@ -102,6 +129,14 @@ export const useUploadFirebase = () => {
                                     [i.label]: downloadURL,
                                 }
                             ))
+
+                            setInfoAboutItem(prev => [
+                                ...prev,
+                                {
+                                    name: i.label + 'Successfully',
+                                    value: `Download completed successfully. File available: ${downloadURL}`
+                                }
+                            ])
                         });
                 }
             );
@@ -185,10 +220,24 @@ export const useUploadFirebase = () => {
         }
     }, [items, dispatch])
 
-    console.log(items)
+    useEffect(() => {
+        if (isCheckItem && isFilesFill) {
+            const out = []
+            for (let key in items) {
+                out.push({name: key, value: items[key]})
+            }
+
+            for (let key in files) {
+                out.push({name: 'Selected ' + key, value: files[key].path})
+            }
+
+            setInfoAboutItem(out)
+        }
+    }, [isCheckItem, isFilesFill])
 
     return {
         imgUrl,
+        infoAboutItem,
         handleChangeText,
         handleChangeFile,
         handleMovieAvatar,

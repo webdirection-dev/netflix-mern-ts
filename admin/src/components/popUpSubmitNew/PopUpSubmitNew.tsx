@@ -1,32 +1,28 @@
-import React, {useEffect, SetStateAction, Dispatch} from "react"
+import React, {SetStateAction, Dispatch} from "react"
 import './popUpSubmitNew.scss'
 
-import {useBgLogin} from "../imgBackground/use-bg-login"
+import {MdKeyboardArrowLeft, MdKeyboardArrowRight, MdOutlineClose} from "react-icons/md"
 
-import {MdKeyboardArrowLeft, MdKeyboardArrowRight, MdOutlineClose} from "react-icons/md";
+import {usePopupSubmit} from "./use-popup-submit"
+import {TypeInfoAboutItem} from "../../pages/new/use-upload-firebase"
 
 interface IPropPopupNew {
     setIsShowPopup: Dispatch<SetStateAction<boolean>>;
     setIsResetMedia: Dispatch<SetStateAction<boolean>>;
-    handleShowPopup: () => void;
+    handleSwitchPopup: () => void;
     handleUpload: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+    infoAboutItem: TypeInfoAboutItem;
 }
 
 const PopUpSubmitNew: React.FC<IPropPopupNew> = (props) => {
-    const {setIsShowPopup, setIsResetMedia, handleShowPopup, handleUpload} = props
-
-    const {className, src} = useBgLogin()
-    const popStyle = ` 
-        linear-gradient(0deg, transparent 0%, rgba(34,193,195,.5) 15%, rgba(34,193,195,.8) 50%, transparent 100%),
-        center / cover no-repeat url(${src})
-    `
-
-    useEffect(() => {
-        document.body.style.overflow = "hidden"
-        return () => {
-            document.body.style.overflow = "auto"
-        }
-    }, [])
+    const {setIsShowPopup, setIsResetMedia, handleSwitchPopup, handleUpload, infoAboutItem} = props
+    const {
+        className,
+        popStyle,
+        notify,
+        isSubmit,
+        setIsSubmit,
+    } = usePopupSubmit()
 
     return(
         <div className='popUp'>
@@ -37,9 +33,10 @@ const PopUpSubmitNew: React.FC<IPropPopupNew> = (props) => {
                 }}
             >
                 <div
-                    className='close'
+                    title='Clear form and Сlose'
+                    className={!isSubmit ? 'close visibility' : 'close hidden'}
                     onClick={() => {
-                        handleShowPopup()
+                        handleSwitchPopup()
                         setIsResetMedia(true)
                     }}
                 >
@@ -48,23 +45,46 @@ const PopUpSubmitNew: React.FC<IPropPopupNew> = (props) => {
                     </div>
                 </div>
 
-                <div className="content">
-                    <div className="monitor">
-                        ssadsadsdsad
-                    </div>
-                    <h2>Data is about to be sent...</h2>
-                    <h2>All is ready!</h2>
+                <div className='content'>
+                    <ul className="monitor showLogs">
+                        <h3 className='title'>Information:</h3>
+
+                        {
+                            [...infoAboutItem].reverse().map((i) => (
+                                <li key={i.name + String(Math.random())}>
+                                    {i.name}: <span>{i.value}</span>
+                                </li>
+                            ))
+                        }
+                    </ul>
+
+                    <h2>{isSubmit ? `${notify}` : 'Could you upload data?'}</h2>
                 </div>
 
-                <button
-                    className='change'
-                    onClick={() => setIsShowPopup(false)
-                }>CHANGE <MdKeyboardArrowLeft /></button>
+                <div className="footer">
+                    <button
+                        className={!isSubmit ? 'change slide-left' : 'change slide-left-hidden'}
+                        onClick={() => setIsShowPopup(false)}
+                    >CHANGE <MdKeyboardArrowLeft /></button>
 
-                <button
-                    className='submit'
-                    onClick={e => handleUpload(e)}
-                >SUBMIT <MdKeyboardArrowRight /></button>
+                    <button
+                        className={!isSubmit ? 'submit slide-right' : 'submit slide-right-hidden'}
+                        onClick={(e) => {
+                            setIsSubmit(true)
+                            handleUpload(e)
+                        }}
+                    >SUBMIT <MdKeyboardArrowRight /></button>
+
+                    {isSubmit && (
+                        <button
+                            className='closeBtn'
+                            onClick={() => {
+                                handleSwitchPopup()
+                                setIsResetMedia(true)
+                            }}
+                        >CLOSE</button>
+                    )}
+                </div>
             </div>
         </div>
     )
