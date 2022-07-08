@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react"
 import {useBgLogin} from "../imgBackground/use-bg-login"
 
-export const usePopupSubmit = () => {
+export const usePopupSubmit = (isAllReady: boolean) => {
     const [isSubmit, setIsSubmit] = useState(false)
 
     const {className, src} = useBgLogin()
@@ -10,7 +10,9 @@ export const usePopupSubmit = () => {
         center / cover no-repeat url(${src})
     `
 
-    const notify = isSubmit ? 'Data is about to be sent...' : 'All is ready!'
+    const notify =
+        !isSubmit ? 'Could you upload data?' :
+        !isAllReady ? 'Data is about to be sent...' : 'All is ready!'
 
     useEffect(() => {
         document.body.style.overflow = "hidden"

@@ -1,23 +1,27 @@
 import React from "react"
-import {MdOutlineDriveFolderUpload} from "react-icons/md"
+import {MdOutlineDriveFolderUpload, MdCheck} from "react-icons/md"
 
 import {movieInputs} from "../../static-data/data/form-source"
+import {IFiles} from "../../pages/new/use-upload-firebase"
 
 interface IPropsLoading {
     handleChangeFile: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleMovieAvatar: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    files: IFiles;
 }
 
-const NewLoading: React.FC<IPropsLoading> = ({handleChangeFile, handleMovieAvatar}) => {
-
+const NewLoading: React.FC<IPropsLoading> = ({handleChangeFile, handleMovieAvatar, files}) => {
     return(
         <>
             <div className="loadImg">
                 {
                     movieInputs.loadingMedia.map(i => {
+
                         if (i.flag === 'image') {
                             return (
-                                <div key={i.id}>
+                                <div key={i.id} className='inputMedia'>
+                                    {files[i.htmlId] && <MdCheck className='check'/>}
+
                                     <label htmlFor={i.htmlId} className='img'>
                                         {i.label} <MdOutlineDriveFolderUpload className='icon'/>
                                     </label>
@@ -47,6 +51,8 @@ const NewLoading: React.FC<IPropsLoading> = ({handleChangeFile, handleMovieAvata
                         if (i.flag === 'media') {
                             return (
                                 <div key={i.id} className="loadVideoForm">
+                                    {files[i.htmlId] && <MdCheck className='check'/>}
+
                                     <label htmlFor={i.htmlId}>{i.label}</label>
                                     <input
                                         type='file'

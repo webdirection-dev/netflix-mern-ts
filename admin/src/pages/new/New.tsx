@@ -21,6 +21,7 @@ const New: React.FC<INewForm> = ({inputs}) => {
     const [isShowPopup, setIsShowPopup] = useState(false)
     const {
         imgUrl,
+        files,
         infoAboutItem,
         handleChangeText,
         handleChangeFile,
@@ -29,6 +30,8 @@ const New: React.FC<INewForm> = ({inputs}) => {
         handleUpload,
         isFilesFill,
         isCheckItem,
+        isAllReady,
+        snapshot,
     } = useUploadFirebase()
 
     const handleSwitchPopup = () => {
@@ -59,6 +62,7 @@ const New: React.FC<INewForm> = ({inputs}) => {
                                 <NewLoading
                                     handleChangeFile={handleChangeFile}
                                     handleMovieAvatar={handleMovieAvatar}
+                                    files={files}
                                 />
 
                                 {!isFilesFill && <button className='disabled'>DISABLED</button>}
@@ -98,21 +102,14 @@ const New: React.FC<INewForm> = ({inputs}) => {
                 </div>
             </div>
 
-            {/*<PopUpSubmitNew*/}
-            {/*    handleSwitchPopup={handleSwitchPopup}*/}
-            {/*    setIsShowPopup={setIsShowPopup}*/}
-            {/*    setIsResetMedia={setIsResetMedia}*/}
-            {/*    handleUpload={handleUpload}*/}
-            {/*    infoAboutItem={infoAboutItem}*/}
-            {/*/>*/}
-
             {isShowPopup &&
                 <PopUpSubmitNew
                     handleSwitchPopup={handleSwitchPopup}
                     setIsShowPopup={setIsShowPopup}
                     setIsResetMedia={setIsResetMedia}
                     handleUpload={handleUpload}
-                    infoAboutItem={infoAboutItem}
+                    infoAboutItem={[...[...snapshot].reverse(), ...infoAboutItem]} //реверс объектаов-логов в массиве
+                    isAllReady={isAllReady}
                 />
             }
         </div>

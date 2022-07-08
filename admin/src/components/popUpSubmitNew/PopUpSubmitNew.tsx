@@ -12,17 +12,18 @@ interface IPropPopupNew {
     handleSwitchPopup: () => void;
     handleUpload: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
     infoAboutItem: TypeInfoAboutItem;
+    isAllReady: boolean;
 }
 
 const PopUpSubmitNew: React.FC<IPropPopupNew> = (props) => {
-    const {setIsShowPopup, setIsResetMedia, handleSwitchPopup, handleUpload, infoAboutItem} = props
+    const {setIsShowPopup, setIsResetMedia, handleSwitchPopup, handleUpload, infoAboutItem, isAllReady} = props
     const {
         className,
         popStyle,
         notify,
         isSubmit,
         setIsSubmit,
-    } = usePopupSubmit()
+    } = usePopupSubmit(isAllReady)
 
     return(
         <div className='popUp'>
@@ -50,7 +51,7 @@ const PopUpSubmitNew: React.FC<IPropPopupNew> = (props) => {
                         <h3 className='title'>Information:</h3>
 
                         {
-                            [...infoAboutItem].reverse().map((i) => (
+                            infoAboutItem.map((i) => (
                                 <li key={i.name + String(Math.random())}>
                                     {i.name}: <span>{i.value}</span>
                                 </li>
@@ -58,7 +59,7 @@ const PopUpSubmitNew: React.FC<IPropPopupNew> = (props) => {
                         }
                     </ul>
 
-                    <h2>{isSubmit ? `${notify}` : 'Could you upload data?'}</h2>
+                    <h2>{notify}</h2>
                 </div>
 
                 <div className="footer">
@@ -75,7 +76,7 @@ const PopUpSubmitNew: React.FC<IPropPopupNew> = (props) => {
                         }}
                     >SUBMIT <MdKeyboardArrowRight /></button>
 
-                    {isSubmit && (
+                    {isSubmit && isAllReady && (
                         <button
                             className='closeBtn'
                             onClick={() => {

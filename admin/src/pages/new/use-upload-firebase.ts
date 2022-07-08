@@ -11,7 +11,7 @@ const quantityInputs = movieInputs.data.length + movieInputs.loadingMedia.length
 
 type TFile = Blob | Uint8Array | ArrayBuffer
 
-interface IFiles {
+export interface IFiles {
     [key: string]: {localFile: {}, path: string}
 }
 
@@ -34,10 +34,11 @@ export const useUploadFirebase = () => {const {dispatch} = useContext(MovieConte
     const [isCheckItem, setIsCheckItem] = useState(false)
     const [isFilesLengthInItem, setIsFilesLengthInItem] = useState(false)
     const [isFilesFill, setIsFilesFill] = useState(false)
+    const [isAllReady, setIsAllReady] = useState(false)
 
     const [movieAvatar, setMovieAvatar] = useState('' as string | File)
-
     const [infoAboutItem, setInfoAboutItem] = useState([] as TypeInfoAboutItem)
+    const [snapshot, setSnapshot] = useState([] as TypeInfoAboutItem)
 
     const imgUrl = movieAvatar ? URL.createObjectURL(movieAvatar as Blob | MediaSource) : noImg
 
@@ -69,6 +70,7 @@ export const useUploadFirebase = () => {const {dispatch} = useContext(MovieConte
     }
 
     const upload = (items: IUpload[]) => {
+        let counter = 0
         items.forEach((i) => {
             const fileName = i.label + '-' + i.path.split('.')[0] + '-' + new Date().getTime()
 
@@ -89,7 +91,7 @@ export const useUploadFirebase = () => {const {dispatch} = useContext(MovieConte
 
                     switch (snapshot.state) {
                         case 'paused':
-                            setInfoAboutItem(prev => [
+                            setSnapshot(prev => [
                                 ...prev,
                                 {
                                     name: elem + 'Snapshot',
@@ -98,7 +100,7 @@ export const useUploadFirebase = () => {const {dispatch} = useContext(MovieConte
                             ])
                             break;
                         case 'running':
-                            setInfoAboutItem(prev => [
+                            setSnapshot(prev => [
                                 ...prev,
                                 {
                                     name: elem + 'Snapshot',
@@ -108,7 +110,7 @@ export const useUploadFirebase = () => {const {dispatch} = useContext(MovieConte
                             break;
                     }
 
-                    setInfoAboutItem(prev => [
+                    setSnapshot(prev => [
                         ...prev,
                         {
                             name: elem + 'Snapshot',
@@ -123,6 +125,8 @@ export const useUploadFirebase = () => {const {dispatch} = useContext(MovieConte
                     // Upload completed successfully, now we can get the download URL
                     getDownloadURL(uploadTask.snapshot.ref)
                         .then((downloadURL) => {
+                            counter = counter + 1
+
                             setItems(prev => (
                                 {
                                     ...prev,
@@ -130,14 +134,16 @@ export const useUploadFirebase = () => {const {dispatch} = useContext(MovieConte
                                 }
                             ))
 
-                            setInfoAboutItem(prev => [
+                            setSnapshot(prev => [
                                 ...prev,
                                 {
                                     name: i.label + 'Successfully',
                                     value: `Download completed successfully. File available: ${downloadURL}`
                                 }
                             ])
-                        });
+
+                            if (counter === movieInputs.loadingMedia.length) setIsAllReady(true)
+                        })
                 }
             );
         })
@@ -181,6 +187,9 @@ export const useUploadFirebase = () => {const {dispatch} = useContext(MovieConte
         setIsFilesLengthInItem(false)
         setIsFilesFill(false)
         setMovieAvatar('')
+        setInfoAboutItem([])
+        setSnapshot([])
+        setIsAllReady(false)
     }
 
     const handleMovieAvatar = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -233,10 +242,11 @@ export const useUploadFirebase = () => {const {dispatch} = useContext(MovieConte
 
             setInfoAboutItem(out)
         }
-    }, [isCheckItem, isFilesFill])
+    }, [isCheckItem, isFilesFill, items, files])
 
     return {
         imgUrl,
+        files,
         infoAboutItem,
         handleChangeText,
         handleChangeFile,
@@ -246,5 +256,7 @@ export const useUploadFirebase = () => {const {dispatch} = useContext(MovieConte
         isFilesFill,
         isCheckItem,
         isFilesLengthInItem,
+        isAllReady,
+        snapshot,
     }
 }
