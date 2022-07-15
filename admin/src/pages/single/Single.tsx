@@ -14,6 +14,7 @@ const Single: React.FC = () => {
         <div className='single'>
             { titleCard === 'User' && <UserCard item={props as IUserRows} titleCard={titleCard}/> }
             { titleCard === 'Movie' && <MovieCard item={props as IMovie} titleCard={titleCard}/> }
+            { titleCard === 'List' && <MovieCard item={props as IMovie} titleCard={titleCard}/> }
         </div>
     )
 }

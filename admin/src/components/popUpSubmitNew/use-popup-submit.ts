@@ -12,7 +12,7 @@ export const usePopupSubmit = (isAllReady: boolean) => {
 
     const notify =
         !isSubmit ? 'Could you upload data?' :
-        !isAllReady ? 'Data is about to be sent...' : 'All is ready!'
+        !isAllReady ? 'Data is about to be sent...' : 'Movie added!'
 
     useEffect(() => {
         document.body.style.overflow = "hidden"

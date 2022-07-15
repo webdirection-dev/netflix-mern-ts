@@ -27,6 +27,15 @@ export interface IMovie {
     isSeries: boolean;
 }
 
+//list from MongoDB
+export interface IList {
+    _id: string | number;
+    title: string | number;
+    type: string;
+    genre: string;
+    content: [];
+}
+
 // users from LocalDB
 export interface IUserRows {
     _id: string;

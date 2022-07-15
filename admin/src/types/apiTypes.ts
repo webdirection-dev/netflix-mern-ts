@@ -1,5 +1,5 @@
 import {Dispatch} from "react"
-import {IUser, IMovie} from "./types"
+import {IUser, IMovie, IList} from "./types"
 
 //auth
 export interface IAuthUserAction {
@@ -29,4 +29,19 @@ export interface IMovieState {
     isFetching: boolean;
     error: boolean;
     dispatch?: TMovieDispatch;
+}
+
+//list
+export interface IListAction {
+    type: string;
+    payload?: {};
+}
+
+export type TListDispatch = Dispatch<IListAction> | undefined
+
+export interface IListState {
+    lists: IList[];
+    isFetching: boolean;
+    error: boolean;
+    dispatch?: TListDispatch;
 }

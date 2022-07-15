@@ -31,6 +31,12 @@ const Main: React.FC = () => {
                         <Route path=":movieId" element={<Single />} />
                         <Route path="new" element={<New inputs={movieInputs}/>} />
                     </Route>
+
+                    <Route path="lists">
+                        <Route index element={<List type='list'/>} />
+                        <Route path=":listId" element={<Single />} />
+                        <Route path="new" element={<New inputs={movieInputs}/>} />
+                    </Route>
                 </Route>
 
                 <Route path="login" element={user ? <Navigate to='/' replace={true} /> : <Login />} />

@@ -1,32 +1,32 @@
-import {IMovieAction, IMovieState} from "../../types/apiTypes"
+import {IListAction, IListState} from "../../types/apiTypes"
 
-const MovieReducer = (state: IMovieState, action: IMovieAction) => {
+const ListsReducer = (state: IListState, action: IListAction) => {
     switch (action.type) {
-        case 'GET_MOVIES_START': {
+        case 'GET_LISTS_START': {
             return {
-                movies: [],
+                lists: [],
                 isFetching: true,
                 error: false,
             }
         }
 
-        case 'GET_MOVIES_SUCCESS': {
+        case 'GET_LISTS_SUCCESS': {
             return {
-                movies: action.payload,
+                lists: action.payload,
                 isFetching: false,
                 error: false,
             }
         }
 
-        case 'GET_MOVIES_FAILURE': {
+        case 'GET_LISTS_FAILURE': {
             return {
-                movies: [],
+                lists: [],
                 isFetching: false,
                 error: true,
             }
         }
 
-        case 'CREATE_MOVIE_START': {
+        case 'CREATE_LIST_START': {
             return {
                 ...state,
                 isFetching: true,
@@ -34,15 +34,15 @@ const MovieReducer = (state: IMovieState, action: IMovieAction) => {
             }
         }
 
-        case 'CREATE_MOVIE_SUCCESS': {
+        case 'CREATE_LIST_SUCCESS': {
             return {
-                movies: [...state.movies, action.payload],
+                lists: [...state.lists, action.payload],
                 isFetching: false,
                 error: false,
             }
         }
 
-        case 'CREATE_MOVIE_FAILURE': {
+        case 'CREATE_LIST_FAILURE': {
             return {
                 ...state,
                 isFetching: false,
@@ -50,7 +50,7 @@ const MovieReducer = (state: IMovieState, action: IMovieAction) => {
             }
         }
 
-        case 'UPDATE_MOVIE_START': {
+        case 'UPDATE_LIST_START': {
             return {
                 ...state,
                 isFetching: true,
@@ -58,16 +58,16 @@ const MovieReducer = (state: IMovieState, action: IMovieAction) => {
             }
         }
 
-        case 'UPDATE_MOVIE_SUCCESS': {
+        case 'UPDATE_LIST_SUCCESS': {
             return {
-                movies: state.movies.map(i => i._id === action.payload),
+                lists: state.lists.map(i => i._id === action.payload),
                 // movies: state.movies.map(i => i._id === action.payload && action.payload._id),
                 isFetching: false,
                 error: false,
             }
         }
 
-        case 'UPDATE_MOVIE_FAILURE': {
+        case 'UPDATE_LIST_FAILURE': {
             return {
                 ...state,
                 isFetching: false,
@@ -75,7 +75,7 @@ const MovieReducer = (state: IMovieState, action: IMovieAction) => {
             }
         }
 
-        case 'DELETE_MOVIES_START': {
+        case 'DELETE_LIST_START': {
             return {
                 ...state,
                 isFetching: true,
@@ -83,15 +83,15 @@ const MovieReducer = (state: IMovieState, action: IMovieAction) => {
             }
         }
 
-        case 'DELETE_MOVIES_SUCCESS': {
+        case 'DELETE_LIST_SUCCESS': {
             return {
-                movies: state.movies.filter(i => i._id !== action.payload),
+                lists: state.lists.filter(i => i._id !== action.payload),
                 isFetching: false,
                 error: false,
             }
         }
 
-        case 'DELETE_MOVIES_FAILURE': {
+        case 'DELETE_LIST_FAILURE': {
             return {
                 ...state,
                 isFetching: false,
@@ -103,4 +103,4 @@ const MovieReducer = (state: IMovieState, action: IMovieAction) => {
     }
 }
 
-export default MovieReducer
+export default ListsReducer

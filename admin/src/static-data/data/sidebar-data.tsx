@@ -4,7 +4,7 @@ import {
     MdDashboard,
     MdPersonOutline,
     MdPlayCircleOutline,
-    MdOutlinePayment,
+    MdFeaturedPlayList,
     MdLocalShipping,
     MdInsertChart,
     MdNotificationsNone,
@@ -40,9 +40,9 @@ export const sidebarData = [
         link: '/movies',
     },
     {
-        title: 'Orders',
-        icon: <MdOutlinePayment className='icon'/>,
-        link: '/orders',
+        title: 'Lists',
+        icon: <MdFeaturedPlayList className='icon'/>,
+        link: '/lists',
     },
     {
         title: 'Delivery',

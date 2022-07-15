@@ -41,6 +41,29 @@ export const moviesColumns: GridColDef[] = [
     },
 ];
 
+export const listsColumns: GridColDef[] = [
+    {
+        field: "_id",
+        headerName: "ID",
+        width: 250
+    },
+    {
+        field: "title",
+        headerName: "Title",
+        width: 250,
+    },
+    {
+        field: "genre",
+        headerName: "Genre",
+        width: 150,
+    },
+    {
+        field: "type",
+        headerName: "Type",
+        width: 150,
+    },
+];
+
 export const userColumns: GridColDef[] = [
     {
         field: "_id",
