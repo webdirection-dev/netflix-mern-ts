@@ -145,13 +145,32 @@ export const movieInputs = {
 
 export const moviesListsInputs = {
     title: 'List',
-    data: [
-        {
-            id: 1,
-            htmlId: 'title',
-            label: "Title",
-            type: "text",
-            placeholder: "John Wick",
-        },
-    ],
+    // data: [
+    //     {
+    //         id: 1,
+    //         htmlId: 'title',
+    //         label: "Title",
+    //         type: "text",
+    //         placeholder: "list name",
+    //     },
+    //     {
+    //         id: 2,
+    //         htmlId: 'genre',
+    //         label: "Genre",
+    //         type: "text",
+    //         placeholder: "genre",
+    //     },
+    //     {
+    //         id: 3,
+    //         htmlId: 'type',
+    //         label: "",
+    //         type: "",
+    //     },
+    //     {
+    //         id: 4,
+    //         htmlId: 'content',
+    //         label: "",
+    //         type: "",
+    //     },
+    // ],
 }

@@ -36,7 +36,7 @@ const Main: React.FC = () => {
                     <Route path="lists">
                         <Route index element={<List type='list'/>} />
                         <Route path=":listId" element={<Single />} />
-                        <Route path="new" element={<MoviesList inputs={movieInputs}/>} />
+                        <Route path="new" element={<MoviesList title='List'/>} />
                     </Route>
                 </Route>
 
