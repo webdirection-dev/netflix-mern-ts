@@ -29,18 +29,19 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/admin/Development/courses/netflix-mern-ts/admin/src/context",
+    "last_opened_file_path": "/Users/admin/Development/courses/netflix-mern-ts/admin/src/pages",
     "list.type.of.created.stylesheet": "SCSS",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_interpreter_path": "node",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "actions.on.save",
-    "ts.external.directory.path": "/Users/admin/Development/courses/netflix-mern-ts/api/node_modules/typescript/lib"
+    "ts.external.directory.path": "/Users/admin/Development/courses/netflix-mern-ts/client/node_modules/typescript/lib"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/admin/src/pages" />
       <recent name="$PROJECT_DIR$/admin/src/context" />
       <recent name="$PROJECT_DIR$/admin/src/context/movieContext" />
       <recent name="$PROJECT_DIR$/admin/src" />
@@ -113,6 +114,7 @@
       <workItem from="1657606747966" duration="892000" />
       <workItem from="1657607775088" duration="481000" />
       <workItem from="1657869802180" duration="12345000" />
+      <workItem from="1658136989046" duration="704000" />
     </task>
     <servers />
   </component>

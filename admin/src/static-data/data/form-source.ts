@@ -142,3 +142,16 @@ export const movieInputs = {
         }
     ]
 }
+
+export const moviesListsInputs = {
+    title: 'List',
+    data: [
+        {
+            id: 1,
+            htmlId: 'title',
+            label: "Title",
+            type: "text",
+            placeholder: "John Wick",
+        },
+    ],
+}

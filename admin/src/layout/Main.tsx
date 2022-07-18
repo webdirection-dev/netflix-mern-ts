@@ -6,9 +6,10 @@ import Home from "../pages/home/Home"
 import List from "../pages/list/List"
 import Single from "../pages/single/Single"
 import New from "../pages/new/New"
+import MoviesList from "../pages/moviesList/MoviesList"
 import NotFond from "../pages/notFound/NotFond"
 
-import {userInputs, movieInputs} from "../static-data/data/form-source"
+import {userInputs, movieInputs, moviesListsInputs} from "../static-data/data/form-source"
 import {AuthContext} from "../context/authContext/AuthContext"
 
 const Main: React.FC = () => {
@@ -35,7 +36,7 @@ const Main: React.FC = () => {
                     <Route path="lists">
                         <Route index element={<List type='list'/>} />
                         <Route path=":listId" element={<Single />} />
-                        <Route path="new" element={<New inputs={movieInputs}/>} />
+                        <Route path="new" element={<MoviesList inputs={movieInputs}/>} />
                     </Route>
                 </Route>
 

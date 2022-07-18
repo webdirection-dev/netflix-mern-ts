@@ -1,0 +1,24 @@
+.moviesList {
+    margin-top: 50px;
+    width: 100%;
+    overflow: hidden;
+
+    .top, .bottom {
+        -webkit-box-shadow: var(--box-shadow-widget);
+        box-shadow: var(--box-shadow-widget);
+        background-color: var(--colors-bg);
+        margin: 20px;
+    }
+
+    .top {
+        .title {
+            color: lightgray;
+            font-size: 20px;
+            padding: 20px;
+        }
+    }
+
+    .bottom {
+        display: flex;
+    }
+}
