@@ -25,7 +25,7 @@ import {
 
     deleteListStart,
     deleteListSuccess,
-    deleteListFailure,
+    deleteListFailure, updateListStart, updateListSuccess, updateListFailure,
 } from "./listsContext/ListsActions"
 
 import {TAuthDispatch, TMovieDispatch} from "../types/apiTypes"
@@ -51,6 +51,7 @@ export const loginCall = async (user: ILoginCall, dispatch: TAuthDispatch) => {
         console.error(err)
     }
 }
+
 
 //get movies
 export const getMovies = async (dispatch: TMovieDispatch) => {
@@ -122,6 +123,7 @@ export const deleteMovie = async (id: string, dispatch: TMovieDispatch) => {
     }
 }
 
+
 //get lists
 export const getLists = async (dispatch: TMovieDispatch) => {
     if (dispatch) dispatch(getListsStart())
@@ -165,6 +167,30 @@ export const createList = async (item: {}, dispatch: TMovieDispatch) => {
         if (dispatch) dispatch(createListSuccess(res.data))
     } catch (err) {
         if (dispatch) dispatch(createListFailure())
+        console.error(err)
+    }
+}
+
+//update lists
+export const updateList = async (id: string, item: {}, dispatch: TMovieDispatch) => {
+    if (dispatch) dispatch(updateListStart())
+
+    const user = JSON.parse(localStorage.getItem('user') as string)
+
+    try {
+        const res = await axios.put(
+            '/lists/'+id,
+            item,
+            {
+                headers: {
+                    authorization: 'Bearer ' + user.accessToken
+                }
+            }
+        )
+
+        if (dispatch) dispatch(updateListSuccess(res.data))
+    } catch (err) {
+        if (dispatch) dispatch(updateListFailure())
         console.error(err)
     }
 }

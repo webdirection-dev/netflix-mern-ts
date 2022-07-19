@@ -11,8 +11,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
-        <option value="SCSS File" />
         <option value="TypeScript JSX File" />
+        <option value="SCSS File" />
         <option value="TypeScript File" />
       </list>
     </option>
@@ -29,7 +29,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/admin/Development/courses/netflix-mern-ts/admin/src/pages",
+    "last_opened_file_path": "/Users/admin/Development/courses/netflix-mern-ts/admin/src/components",
     "list.type.of.created.stylesheet": "SCSS",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -41,6 +41,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/admin/src/components" />
       <recent name="$PROJECT_DIR$/admin/src/pages" />
       <recent name="$PROJECT_DIR$/admin/src/context" />
       <recent name="$PROJECT_DIR$/admin/src/context/movieContext" />
@@ -115,6 +116,7 @@
       <workItem from="1657607775088" duration="481000" />
       <workItem from="1657869802180" duration="12345000" />
       <workItem from="1658136989046" duration="5279000" />
+      <workItem from="1658213798306" duration="23289000" />
     </task>
     <servers />
   </component>

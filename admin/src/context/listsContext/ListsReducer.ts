@@ -26,6 +26,7 @@ const ListsReducer = (state: IListState, action: IListAction) => {
             }
         }
 
+
         case 'CREATE_LIST_START': {
             return {
                 ...state,
@@ -49,6 +50,7 @@ const ListsReducer = (state: IListState, action: IListAction) => {
                 error: true,
             }
         }
+
 
         case 'UPDATE_LIST_START': {
             return {
@@ -74,6 +76,7 @@ const ListsReducer = (state: IListState, action: IListAction) => {
                 error: true,
             }
         }
+
 
         case 'DELETE_LIST_START': {
             return {

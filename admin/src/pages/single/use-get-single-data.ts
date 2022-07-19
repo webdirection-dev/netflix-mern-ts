@@ -1,8 +1,8 @@
 import {useLocation} from "react-router-dom"
-import {IMovie, IUserRows} from "../../types/types"
+import {IList, IMovie, IUserRows} from "../../types/types"
 
 interface IPropsToCard {
-    props: IMovie | IUserRows
+    props: IMovie | IUserRows | IList
 }
 
 export const useGetSingleData = () => {

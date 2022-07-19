@@ -3,9 +3,10 @@ import './single.scss'
 
 import UserCard from "../../components/userCard/UserCard"
 import MovieCard from "../../components/movieCard/MovieCard"
+import MoviesListCard from "../../components/moviesListCard/MoviesListCard"
 
 import {useGetSingleData} from "./use-get-single-data"
-import {IUserRows, IMovie} from "../../types/types"
+import {IUserRows, IMovie, IList} from "../../types/types"
 
 const Single: React.FC = () => {
     const {titleCard, props} = useGetSingleData()
@@ -14,7 +15,7 @@ const Single: React.FC = () => {
         <div className='single'>
             { titleCard === 'User' && <UserCard item={props as IUserRows} titleCard={titleCard}/> }
             { titleCard === 'Movie' && <MovieCard item={props as IMovie} titleCard={titleCard}/> }
-            { titleCard === 'List' && <MovieCard item={props as IMovie} titleCard={titleCard}/> }
+            { titleCard === 'List' && <MoviesListCard item={props as IList} titleCard={titleCard}/> }
         </div>
     )
 }
