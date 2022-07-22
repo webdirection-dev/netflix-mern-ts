@@ -1,9 +1,7 @@
-import {useEffect, useState} from "react"
+import {useContext, useEffect, useState} from "react"
 import axios from "axios"
 import {MONTHS, IDataForRender} from "../../static-data/data/stat-data"
-
-import {MY_TOKEN} from "../../configs/config"
-const token = `Bearer ${MY_TOKEN}`
+import {AuthContext} from "../../context/authContext/AuthContext"
 
 interface IStatFromMongo {
     _id: number;
@@ -12,6 +10,8 @@ interface IStatFromMongo {
 
 export const useGetStat = () => {
     const [userStat, setUserStat] = useState([] as IDataForRender[])
+    const {user} = useContext(AuthContext)
+    const token = 'Bearer ' + user?.accessToken
 
     useEffect(() => {
         const getStats = async () => {

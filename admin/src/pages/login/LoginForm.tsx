@@ -9,7 +9,6 @@ const LoginForm = () => {
 
     const handleLogin = (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault()
-
         loginCall({email, password}, dispatch)
     }
 

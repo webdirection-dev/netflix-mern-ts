@@ -9,7 +9,7 @@ import New from "../pages/new/New"
 import MoviesList from "../pages/moviesList/MoviesList"
 import NotFond from "../pages/notFound/NotFond"
 
-import {userInputs, movieInputs, moviesListsInputs} from "../static-data/data/form-source"
+import {userInputs, movieInputs} from "../static-data/data/form-source"
 import {AuthContext} from "../context/authContext/AuthContext"
 
 const Main: React.FC = () => {

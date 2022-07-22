@@ -40,6 +40,7 @@ router.put(
     '/:id',
     verify, // middleware
     async (req: ILists, res: Response) => {
+
         if (req.user.isAdmin) {
             try {
                 const updatedList = await List.findByIdAndUpdate(

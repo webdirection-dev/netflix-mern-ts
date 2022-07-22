@@ -1,8 +1,11 @@
 import {useNavigate} from "react-router-dom"
 import React, {useContext, useEffect, useState} from "react"
-import {ListsContext} from "../../context/listsContext/ListsContext"
+
+import {useAppDispatch} from "../../hooks/hookRedux"
+import {createMoviesList} from "../../features/moviesList/movies-list-slice"
+
 import {MovieContext} from "../../context/movieContext/MovieContext"
-import {createList, getMovies} from "../../context/apiCalls"
+import {getMovies} from "../../context/apiCalls"
 
 interface IList {
     [key: string]: string | string[]
@@ -10,7 +13,8 @@ interface IList {
 
 export const useMoviesList = () => {
     const navigate = useNavigate()
-    const {dispatch: dispatchList} = useContext(ListsContext)
+    const dispatch = useAppDispatch()
+
     const {movies, dispatch: dispatchMovies} = useContext(MovieContext)
 
     const [movieList, setMovieList] = useState({} as IList)
@@ -40,7 +44,7 @@ export const useMoviesList = () => {
         e.preventDefault()
 
         if (isAllReady) {
-            createList(movieList, dispatchList)
+            dispatch(createMoviesList(movieList))
             navigate('../')
         } else navigate('../')
     }

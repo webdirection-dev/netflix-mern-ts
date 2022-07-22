@@ -1,12 +1,12 @@
-import {useEffect, useState} from "react"
+import {useContext, useEffect, useState} from "react"
 import axios from "axios"
 import {IUser} from "../../types/types"
-
-import {MY_TOKEN} from "../../configs/config"
-const token = `Bearer ${MY_TOKEN}`
+import {AuthContext} from "../../context/authContext/AuthContext";
 
 export const useWidgetSmData = () => {
-    const [newUsers, setNewUsers] = useState([] as IUser[]);
+    const [newUsers, setNewUsers] = useState([] as IUser[])
+    const {user} = useContext(AuthContext)
+    const token = 'Bearer ' + user?.accessToken
 
     useEffect(() => {
         const getNewUsers = async () => {
