@@ -46,7 +46,7 @@ const ListItem: React.FC<IListProps> = ({item, index}) => {
 
     return(
         <Link to='/watch' state={{ movie: movie }}>
-        {/*<Link to={{pathname: '/watch', movie: movie}}>*/}
+        {/*<Link to={{pathname: '/watch', movies: movies}}>*/}
             <div
                 className='listItemWrapper'
                 onMouseEnter={() => setIsHovered(true)}

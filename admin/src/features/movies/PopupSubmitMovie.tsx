@@ -1,11 +1,11 @@
 import React, {SetStateAction, Dispatch} from "react"
 import {useNavigate} from "react-router-dom"
-import './popUpSubmitNew.scss'
+import './style/popUpSubmitNew.scss'
 
 import {MdKeyboardArrowLeft, MdKeyboardArrowRight, MdOutlineClose} from "react-icons/md"
 
-import {usePopupSubmit} from "./use-popup-submit"
-import {TypeInfoAboutItem} from "../../pages/new/use-upload-firebase"
+import {usePopupSubmit} from "./hooks/use-popup-submit"
+import {TypeInfoAboutItem} from "./hooks/use-upload-firebase"
 
 interface IPropPopupNew {
     setIsShowPopup: Dispatch<SetStateAction<boolean>>;
@@ -16,7 +16,7 @@ interface IPropPopupNew {
     isAllReady: boolean;
 }
 
-const PopUpSubmitNew: React.FC<IPropPopupNew> = (props) => {
+const PopupSubmitMovie: React.FC<IPropPopupNew> = (props) => {
     const navigate = useNavigate()
     const {setIsShowPopup, setIsResetMedia, handleSwitchPopup, handleUpload, infoAboutItem, isAllReady} = props
     const {
@@ -94,4 +94,4 @@ const PopUpSubmitNew: React.FC<IPropPopupNew> = (props) => {
     )
 }
 
-export default PopUpSubmitNew
+export default PopupSubmitMovie

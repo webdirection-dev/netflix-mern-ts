@@ -1,6 +1,6 @@
 import React from "react"
 
-import './style/moviesListCard.scss'
+import './style/viewList.scss'
 
 import {useMoviesListCard} from "./hooks/use-movies-list-card"
 import {IList} from "../../types/types"
@@ -10,7 +10,7 @@ interface IMoviesListCard {
     titleCard: string;
 }
 
-const MovieListCard: React.FC<IMoviesListCard> = ({item, titleCard}) => {
+const ViewList: React.FC<IMoviesListCard> = ({item, titleCard}) => {
     const {_id, title, genre, type, content} = item
     const {
         isEdit,
@@ -105,4 +105,4 @@ const MovieListCard: React.FC<IMoviesListCard> = ({item, titleCard}) => {
     )
 }
 
-export default MovieListCard
+export default ViewList

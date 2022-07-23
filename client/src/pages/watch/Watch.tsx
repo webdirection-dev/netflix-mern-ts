@@ -11,7 +11,7 @@ interface IMovie {
 
 const Watch: React.FC = () => {
     const {movie} = useLocation().state as IMovie
-    // console.log(movie)
+    // console.log(movies)
     const {video} = movie
 
 

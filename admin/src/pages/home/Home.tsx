@@ -29,7 +29,7 @@ const Home: React.FC = () => {
                     aspect={2 / 1}
                     title='User Analytics'
                     userStat={userStat}
-                    myDataKey='New User'
+                    myDataKey='NewMovie User'
                 />
             </div>
 

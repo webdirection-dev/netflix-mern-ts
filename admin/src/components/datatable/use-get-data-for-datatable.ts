@@ -1,9 +1,7 @@
-import {useContext, useEffect} from "react"
-
 import {useAppDispatch, useAppSelector} from "../../hooks/hookRedux"
 
-import {selectAllMoviesLists, removeMoviesList} from "../../features/moviesList/movies-list-slice"
-import {selectAllMovies, removeMovies} from "../../features/movie/movie-slice"
+import {selectAllMoviesLists, removeMoviesList} from "../../features/lists/movies-list-slice"
+import {selectAllMovies, removeMovie} from "../../features/movies/movies-slice"
 
 import {moviesColumns, listsColumns} from "../../static-data/data/datatable-data"
 
@@ -23,7 +21,7 @@ export const useGetDataForDatatable = (type: string) => {
     const title = type[0].toUpperCase() + type.slice(1)
 
     const deleteItem = (id: string) => {
-        if (type === 'movie') dispatch(removeMovies(id))
+        if (type === 'movie') dispatch(removeMovie(id))
         if (type === 'list') dispatch(removeMoviesList(id))
     }
 

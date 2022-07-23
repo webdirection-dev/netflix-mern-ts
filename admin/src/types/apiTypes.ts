@@ -16,7 +16,7 @@ export interface IAuthUserState {
     dispatch?: TAuthDispatch;
 }
 
-//movie
+//movies
 export interface IMovieAction {
     type: string;
     payload?: {};

@@ -40,8 +40,8 @@ export const loadMovies = createAsyncThunk<MovieType[], undefined, {rejectValue:
     }
 )
 
-export const createMovies = createAsyncThunk<MovieType, {}, {rejectValue: string}>(
-    '@@movies/create-movies',
+export const createMovie = createAsyncThunk<MovieType, {}, {rejectValue: string}>(
+    '@@movies/create-movie',
 
     async (item, {rejectWithValue}) => {
         return  await axios.post(
@@ -62,8 +62,8 @@ export const createMovies = createAsyncThunk<MovieType, {}, {rejectValue: string
     }
 )
 
-export const updateMovies = createAsyncThunk<MovieType, IUpdateMovies, {rejectValue: string}>(
-    '@@movies/update-movies',
+export const updateMovie = createAsyncThunk<MovieType, IUpdateMovies, {rejectValue: string}>(
+    '@@movies/update-movie',
 
     async ({_id, updateMovie}, {rejectWithValue}) => {
         return  await axios.put(
@@ -84,8 +84,8 @@ export const updateMovies = createAsyncThunk<MovieType, IUpdateMovies, {rejectVa
     }
 )
 
-export const removeMovies = createAsyncThunk<string, string, {rejectValue: string}>(
-    '@@movies/remove-movies',
+export const removeMovie = createAsyncThunk<string, string, {rejectValue: string}>(
+    '@@movies/remove-movie',
 
     async (id, {rejectWithValue}) => {
         return  await axios.delete(
@@ -127,7 +127,7 @@ const moviesSlice = createSlice({
             )
 
             .addCase(
-                createMovies.fulfilled,
+                createMovie.fulfilled,
                 (state, action) => {
                     state.status = 'received'
                     state.movies = [...state.movies.reverse(), action.payload].reverse()
@@ -135,7 +135,7 @@ const moviesSlice = createSlice({
             )
 
             .addCase(
-                updateMovies.fulfilled,
+                updateMovie.fulfilled,
                 (state, action) => {
                     state.status = 'received'
                     const out = state.movies.filter(i => i._id !== action.payload._id)
@@ -145,7 +145,7 @@ const moviesSlice = createSlice({
             )
 
             .addCase(
-                removeMovies.fulfilled,
+                removeMovie.fulfilled,
                 (state, action) => {
                     state.status = 'received'
                     state.movies = state.movies.filter(i => i._id !== action.payload)

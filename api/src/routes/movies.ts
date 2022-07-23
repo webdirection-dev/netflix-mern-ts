@@ -65,7 +65,7 @@ router.delete(
         if (req.user.isAdmin) {
             try {
                 await Movie.findByIdAndDelete(req.params.id)
-                return res.status(200).json('The movie has been deleted...')
+                return res.status(200).json('The movies has been deleted...')
             } catch (err) {
                 return res.status(500).json(err)
             }

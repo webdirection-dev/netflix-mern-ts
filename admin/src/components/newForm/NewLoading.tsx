@@ -2,7 +2,7 @@ import React from "react"
 import {MdOutlineDriveFolderUpload, MdCheck} from "react-icons/md"
 
 import {movieInputs} from "../../static-data/data/form-source"
-import {IFiles} from "../../pages/new/use-upload-firebase"
+import {IFiles} from "../../features/movies/hooks/use-upload-firebase"
 
 interface IPropsLoading {
     handleChangeFile: (e: React.ChangeEvent<HTMLInputElement>) => void;

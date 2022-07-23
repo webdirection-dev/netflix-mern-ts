@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react"
 
 import {useAppDispatch, useAppSelector} from "../../../hooks/hookRedux"
 import {createMoviesList} from "../movies-list-slice"
-import {selectAllMovies} from "../../movie/movie-slice"
+import {selectAllMovies} from "../../movies/movies-slice"
 
 interface IList {
     [key: string]: string | string[]

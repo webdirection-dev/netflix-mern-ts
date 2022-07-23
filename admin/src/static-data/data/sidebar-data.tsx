@@ -40,7 +40,7 @@ export const sidebarData = [
         link: '/movies',
     },
     {
-        title: 'Lists',
+        title: 'lists',
         icon: <MdFeaturedPlayList className='icon'/>,
         link: '/lists',
     },

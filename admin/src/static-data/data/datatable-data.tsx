@@ -7,7 +7,7 @@ export const moviesColumns: GridColDef[] = [
         width: 120
     },
     {
-        field: "movie",
+        field: "movies",
         headerName: "Movie",
         width: 230,
         renderCell: (params) => {

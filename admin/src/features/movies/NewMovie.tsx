@@ -1,21 +1,19 @@
 import React, {useEffect, useState} from "react"
-import './new.scss'
+import './style/movie.scss'
 
 import NewLoading from "../../components/newForm/NewLoading"
 import NewItem from "../../components/newForm/NewItem"
-import PopUpSubmitNew from "../../components/popUpSubmitNew/PopUpSubmitNew"
-
-import {MdOutlineDriveFolderUpload} from "react-icons/md"
+import PopupSubmitMovie from "./PopupSubmitMovie"
 
 import {INewFormInput} from "../../types/types"
 
-import {useUploadFirebase} from "./use-upload-firebase"
+import {useUploadFirebase} from "./hooks/use-upload-firebase"
 
 interface INewForm {
     inputs: INewFormInput;
 }
 
-const New: React.FC<INewForm> = ({inputs}) => {
+const NewMovie: React.FC<INewForm> = ({inputs}) => {
     const {title, data} = inputs
     const [isResetMedia, setIsResetMedia] = useState(false) // Перерендер для очистки формы
     const [isShowPopup, setIsShowPopup] = useState(false)
@@ -57,7 +55,7 @@ const New: React.FC<INewForm> = ({inputs}) => {
                     <img src={imgUrl} alt="img"/>
 
                     {
-                        title !== 'User' && !isResetMedia && (
+                        !isResetMedia && (
                             <>
                                 <NewLoading
                                     handleChangeFile={handleChangeFile}
@@ -74,22 +72,6 @@ const New: React.FC<INewForm> = ({inputs}) => {
 
                 <div className="right">
                     <form>
-                        {title === 'User' && (
-                            <div className='formInput'>
-                                <label htmlFor='img' className='img'>
-                                    Image: <MdOutlineDriveFolderUpload className='icon'/>
-                                </label>
-
-                                <input
-                                    type='file'
-                                    id='img'
-                                    name='img'
-                                    style={{display: 'none'}}
-                                    onChange={(e) => handleChangeFile(e)}
-                                />
-                            </div>
-                        )}
-
                         {
                             !isResetMedia &&
                             data.map(i => <NewItem key={i.id} handleChangeText={handleChangeText} {...i}/>)
@@ -103,7 +85,7 @@ const New: React.FC<INewForm> = ({inputs}) => {
             </div>
 
             {isShowPopup &&
-                <PopUpSubmitNew
+                <PopupSubmitMovie
                     handleSwitchPopup={handleSwitchPopup}
                     setIsShowPopup={setIsShowPopup}
                     setIsResetMedia={setIsResetMedia}
@@ -116,4 +98,4 @@ const New: React.FC<INewForm> = ({inputs}) => {
     )
 }
 
-export default New
+export default NewMovie

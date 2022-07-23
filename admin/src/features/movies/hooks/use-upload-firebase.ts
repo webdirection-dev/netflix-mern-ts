@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from "react"
-import {storage} from "../../configs/firebase"
+import {storage} from "../../../configs/firebase"
 import {getDownloadURL, ref, uploadBytesResumable} from "firebase/storage"
 
-import {useAppDispatch} from "../../hooks/hookRedux"
-import {createMovies} from "../../features/movie/movie-slice"
+import {useAppDispatch} from "../../../hooks/hookRedux"
+import {createMovie} from "../movies-slice"
 
-import {noImg} from '../../static-data/img'
-import {movieInputs} from "../../static-data/data/form-source"
+import {noImg} from '../../../static-data/img'
+import {movieInputs} from "../../../static-data/data/form-source"
 
 const quantityInputs = movieInputs.data.length + movieInputs.loadingMedia.length
 
@@ -227,7 +227,7 @@ export const useUploadFirebase = () => {
         }
 
         if (counter === quantityInputs) {
-            dispatch(createMovies(items))
+            dispatch(createMovie(items))
         }
     }, [items])
 

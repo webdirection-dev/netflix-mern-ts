@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react"
-import {useBgLogin} from "../imgBackground/use-bg-login"
+import {useBgLogin} from "../../../components/imgBackground/use-bg-login"
 
 export const usePopupSubmit = (isAllReady: boolean) => {
     const [isSubmit, setIsSubmit] = useState(false)

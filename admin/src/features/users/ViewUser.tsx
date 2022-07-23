@@ -1,14 +1,14 @@
 import React from "react"
 import {IUserRows} from "../../types/types"
-import Chart from "../chart/Chart";
-import Table from "../table/Table";
+import Chart from "../../components/chart/Chart"
+import Table from "../../components/table/Table"
 
 interface IUserCard {
     item: IUserRows;
     titleCard: string;
 }
 
-const UserCard: React.FC<IUserCard> = ({item, titleCard}) => {
+const ViewUser: React.FC<IUserCard> = ({item, titleCard}) => {
     const {username, img, status, email, age} = item
 
     return(
@@ -68,4 +68,4 @@ const UserCard: React.FC<IUserCard> = ({item, titleCard}) => {
     )
 }
 
-export default UserCard
+export default ViewUser

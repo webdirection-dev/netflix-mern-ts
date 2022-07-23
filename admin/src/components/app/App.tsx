@@ -12,8 +12,8 @@ import {useChangeTheme} from "./use-change-theme"
 import {AuthContext} from "../../context/authContext/AuthContext"
 
 import {useAppDispatch} from "../../hooks/hookRedux";
-import {loadMovies} from "../../features/movie/movie-slice"
-import {loadMoviesLists} from "../../features/moviesList/movies-list-slice"
+import {loadMovies} from "../../features/movies/movies-slice"
+import {loadMoviesLists} from "../../features/lists/movies-list-slice"
 
 function App() {
     const dispatch = useAppDispatch()

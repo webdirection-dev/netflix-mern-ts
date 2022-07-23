@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom"
 
 import {useAppDispatch, useAppSelector} from "../../../hooks/hookRedux"
 import {updateMoviesList} from "../movies-list-slice"
-import {selectAllMovies} from "../../movie/movie-slice"
+import {selectAllMovies} from "../../movies/movies-slice"
 
 export const useMoviesListCard = (_id: string, type: string, content: string[]) => {
     const navigate = useNavigate()

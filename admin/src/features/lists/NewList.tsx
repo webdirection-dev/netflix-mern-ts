@@ -1,12 +1,12 @@
 import React from "react"
-import './style/moviesList.scss'
+import './style/newList.scss'
 import {useMoviesList} from "./hooks/use-movies-list"
 
 interface IMovieList {
     title: string;
 }
 
-const MoviesList: React.FC<IMovieList> = ({title}) => {
+const NewList: React.FC<IMovieList> = ({title}) => {
     const {isAllReady, movies, handleChange, handleSelect, handleSubmit,} = useMoviesList()
 
     return(
@@ -89,4 +89,4 @@ const MoviesList: React.FC<IMovieList> = ({title}) => {
     )
 }
 
-export default MoviesList
+export default NewList

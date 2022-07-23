@@ -65,7 +65,7 @@ export default Chart
 //
 // interface IDataForRender {
 //     name: string;
-//     "New User": number;
+//     "NewMovie User": number;
 // }
 //
 // interface IChart {

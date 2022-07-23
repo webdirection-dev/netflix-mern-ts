@@ -11,9 +11,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
-        <option value="TypeScript JSX File" />
-        <option value="SCSS File" />
         <option value="TypeScript File" />
+        <option value="SCSS File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -29,7 +29,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/admin/Development/courses/netflix-mern-ts/admin/src/components&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/admin/Development/courses/netflix-mern-ts/admin/src/features/users&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -41,18 +41,18 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/admin/src/features/users" />
       <recent name="$PROJECT_DIR$/admin/src/components" />
       <recent name="$PROJECT_DIR$/admin/src/pages" />
       <recent name="$PROJECT_DIR$/admin/src/context" />
       <recent name="$PROJECT_DIR$/admin/src/context/movieContext" />
-      <recent name="$PROJECT_DIR$/admin/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/admin/src/features/movie" />
-      <recent name="$PROJECT_DIR$/admin/src/features/moviesList/hooks" />
-      <recent name="$PROJECT_DIR$/admin/src/features/moviesList/style" />
-      <recent name="$PROJECT_DIR$/admin/src/features/moviesList" />
-      <recent name="$PROJECT_DIR$/admin/src" />
+      <recent name="$PROJECT_DIR$/admin/src/features/movies/hooks" />
+      <recent name="$PROJECT_DIR$/admin/src/features/movies" />
+      <recent name="$PROJECT_DIR$/admin/src/features/movies/style" />
+      <recent name="$PROJECT_DIR$/admin/src/features/movie/hooks" />
+      <recent name="$PROJECT_DIR$/admin/src/features/movie/style" />
     </key>
   </component>
   <component name="RunManager" selected="npm.npm start">
@@ -119,7 +119,10 @@
       <workItem from="1658213798306" duration="23289000" />
       <workItem from="1658472737671" duration="23561000" />
       <workItem from="1658562119544" duration="936000" />
-      <workItem from="1658563163479" duration="5297000" />
+      <workItem from="1658563163479" duration="6039000" />
+      <workItem from="1658569550770" duration="1129000" />
+      <workItem from="1658570707804" duration="1292000" />
+      <workItem from="1658572008482" duration="4729000" />
     </task>
     <servers />
   </component>

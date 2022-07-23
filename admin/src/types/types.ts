@@ -11,7 +11,7 @@ export interface IUser {
     accessToken?: string;
 }
 
-//movie from MongoDB
+//movies from MongoDB
 export interface IMovie {
     _id: string | number;
     title: string;
@@ -46,7 +46,7 @@ export interface IUserRows {
     age: number;
 }
 
-//form Add New User
+//form Add NewMovie User
 export interface INewItemInput {
     id: number,
     htmlId: string;
