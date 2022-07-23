@@ -1,8 +1,8 @@
 import React from "react"
 
-import './moviesListCard.scss'
+import './style/moviesListCard.scss'
 
-import {useMoviesListCard} from "./use-movies-list-card"
+import {useMoviesListCard} from "./hooks/use-movies-list-card"
 import {IList} from "../../types/types"
 
 interface IMoviesListCard {

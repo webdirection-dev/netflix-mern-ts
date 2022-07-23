@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import {Route, Routes, Navigate} from "react-router-dom"
 import './app.scss'
 
@@ -11,10 +11,21 @@ import NotFond from "../../pages/notFound/NotFond"
 import {useChangeTheme} from "./use-change-theme"
 import {AuthContext} from "../../context/authContext/AuthContext"
 
+import {useAppDispatch} from "../../hooks/hookRedux";
+import {loadMovies} from "../../features/movie/movie-slice"
+import {loadMoviesLists} from "../../features/moviesList/movies-list-slice"
+
 function App() {
+    const dispatch = useAppDispatch()
     const {user} = useContext(AuthContext)
+
     const [dark, setDark] = useState(false)
     useChangeTheme(dark)
+
+    useEffect(() => {
+        dispatch(loadMovies())
+        dispatch(loadMoviesLists())
+    }, [])
 
     return (
         <>
@@ -36,32 +47,6 @@ function App() {
                     </div>
                 )
             }
-
-
-            {/*{*/}
-            {/*    !auth*/}
-            {/*        ? <Routes>*/}
-            {/*            <Route path='/' element={<Navigate to='/login' replace={true}/>} />*/}
-            {/*            <Route path="login" element={<Login />} />*/}
-            {/*            <Route path="*" element={<NotFond />} />*/}
-            {/*        </Routes>*/}
-            {/*        : <Routes>*/}
-            {/*            <Route path="login" element={<Navigate to='/' replace={true} />} />*/}
-            {/*        </Routes>*/}
-            {/*}*/}
-
-            {/*{*/}
-            {/*    auth && (*/}
-            {/*        <div className='app'>*/}
-            {/*            <Sidebar setDark={setDark} dark={dark}/>*/}
-
-            {/*            <div className="container">*/}
-            {/*                <Navbar setDark={setDark} dark={dark}/>*/}
-            {/*                <Main />*/}
-            {/*            </div>*/}
-            {/*        </div>*/}
-            {/*    )*/}
-            {/*}*/}
         </>
 
     )

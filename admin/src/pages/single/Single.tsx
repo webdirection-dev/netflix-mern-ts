@@ -2,8 +2,8 @@ import React from "react"
 import './single.scss'
 
 import UserCard from "../../components/userCard/UserCard"
-import MovieCard from "../../components/movieCard/MovieCard"
-import MoviesListCard from "../../components/moviesListCard/MoviesListCard"
+import MovieCard from "../../features/movie/MovieCard"
+import MoviesListCard from "../../features/moviesList/MoviesListCard"
 
 import {useGetSingleData} from "./use-get-single-data"
 import {IUserRows, IMovie, IList} from "../../types/types"

@@ -1,9 +1,10 @@
-import React, {useState, useContext, useEffect} from "react"
+import React, {useState, useEffect} from "react"
 import {storage} from "../../configs/firebase"
 import {getDownloadURL, ref, uploadBytesResumable} from "firebase/storage"
 
-import {MovieContext} from "../../context/movieContext/MovieContext"
-import {createMovies} from "../../context/apiCalls"
+import {useAppDispatch} from "../../hooks/hookRedux"
+import {createMovies} from "../../features/movie/movie-slice"
+
 import {noImg} from '../../static-data/img'
 import {movieInputs} from "../../static-data/data/form-source"
 
@@ -27,7 +28,8 @@ interface IUpload {
 
 export type TypeInfoAboutItem = IItem[]
 
-export const useUploadFirebase = () => {const {dispatch} = useContext(MovieContext)
+export const useUploadFirebase = () => {
+    const dispatch = useAppDispatch()
     const [items, setItems] = useState({isSeries: 'false'} as IItem) // isSeries НЕ УДАЛЯТЬ!!!
     const [files, setFiles] = useState({} as IFiles)
 
@@ -225,9 +227,9 @@ export const useUploadFirebase = () => {const {dispatch} = useContext(MovieConte
         }
 
         if (counter === quantityInputs) {
-            createMovies(items, dispatch)
+            dispatch(createMovies(items))
         }
-    }, [items, dispatch])
+    }, [items])
 
     useEffect(() => {
         if (isCheckItem && isFilesFill) {

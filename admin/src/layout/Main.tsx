@@ -6,7 +6,7 @@ import Home from "../pages/home/Home"
 import List from "../pages/list/List"
 import Single from "../pages/single/Single"
 import New from "../pages/new/New"
-import MoviesList from "../pages/moviesList/MoviesList"
+import MoviesList from "../features/moviesList/MoviesList"
 import NotFond from "../pages/notFound/NotFond"
 
 import {userInputs, movieInputs} from "../static-data/data/form-source"

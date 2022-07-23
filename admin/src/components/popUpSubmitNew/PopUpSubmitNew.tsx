@@ -1,4 +1,5 @@
 import React, {SetStateAction, Dispatch} from "react"
+import {useNavigate} from "react-router-dom"
 import './popUpSubmitNew.scss'
 
 import {MdKeyboardArrowLeft, MdKeyboardArrowRight, MdOutlineClose} from "react-icons/md"
@@ -16,6 +17,7 @@ interface IPropPopupNew {
 }
 
 const PopUpSubmitNew: React.FC<IPropPopupNew> = (props) => {
+    const navigate = useNavigate()
     const {setIsShowPopup, setIsResetMedia, handleSwitchPopup, handleUpload, infoAboutItem, isAllReady} = props
     const {
         className,
@@ -80,8 +82,9 @@ const PopUpSubmitNew: React.FC<IPropPopupNew> = (props) => {
                         <button
                             className='closeBtn'
                             onClick={() => {
-                                handleSwitchPopup()
-                                setIsResetMedia(true)
+                                navigate('../')
+                                // handleSwitchPopup()
+                                // setIsResetMedia(true)
                             }}
                         >CLOSE</button>
                     )}

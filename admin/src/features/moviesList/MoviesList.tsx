@@ -1,6 +1,6 @@
 import React from "react"
-import './moviesList.scss'
-import {useMoviesList} from "./use-movies-list"
+import './style/moviesList.scss'
+import {useMoviesList} from "./hooks/use-movies-list"
 
 interface IMovieList {
     title: string;
